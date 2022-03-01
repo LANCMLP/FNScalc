@@ -201,6 +201,8 @@ footer#snap-calculator-footer div {
   padding: 10px;
   border: 2px solid black;
   transition: 0.5s;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .overlay .closebtn:hover {
@@ -212,4 +214,14 @@ footer#snap-calculator-footer div {
     font-size: 12px;
     width: 85%;
   }
+}
+
+/* Logo */
+
+.logo {
+  width: 75%;
+  display: block;
+  margin: auto;
+  height: 225px;
+  object-fit: cover;
 }
