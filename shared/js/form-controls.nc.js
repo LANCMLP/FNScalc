@@ -148,6 +148,8 @@
     hideCitizenshipInfobox: DOM_MANIPULATORS["hideElem"](
       "citizenship_info_box"
     ),
+    showABAWDInfobox: DOM_MANIPULATORS["showElem"]("abawd_info_box"),
+    hideABAWDInfobox: DOM_MANIPULATORS["hideElem"]("abawd_info_box"),
     showMedicalExpensesForElderlyOrDisabled: DOM_MANIPULATORS["showElem"](
       "medical_expenses_for_elderly_or_disabled_question"
     ),
@@ -244,6 +246,30 @@
           name: "all_citizens_question",
           message:
             'Select "yes" or "no" if everyone on the application is a U.S. citizen',
+        });
+      }
+
+      if (jsonData["disqualified_question"] === undefined) {
+        errors.push({
+          name: "disqualified_question",
+          message:
+            'Select "yes" or "no" if anyone in the household is currently disqualified.',
+        });
+      }
+
+      if (jsonData["felony_question"] === undefined) {
+        errors.push({
+          name: "felony_question",
+          message:
+            'Select "yes" or "no" if anyone in the household has been convicted of a drug-related felony since August 23, 1996.',
+        });
+      }
+
+      if (jsonData["all_citizens_question"] === undefined) {
+        errors.push({
+          name: "household_includes_abawd",
+          message:
+            'Select "yes" or "no" if someone in your household is between ages 18-49.',
         });
       }
 
@@ -582,6 +608,19 @@
       FORM_CONTROLS["showCitizenshipInfobox"]();
     });
 
+  // Set up toggle of abawd infobox in response to abawd question.
+  document
+    .getElementById("input__household_includes_abawd_true")
+    .addEventListener("change", () => {
+      FORM_CONTROLS["showABAWDInfobox"]();
+    });
+
+  document
+    .getElementById("input__household_includes_abawd_false")
+    .addEventListener("change", () => {
+      FORM_CONTROLS["hideABAWDInfobox"]();
+    });
+
   // Set up toggle of medical expenses question in response to elderly or disabled question result.
   document
     .getElementById("input__household_includes_elderly_or_disabled_true")
@@ -630,9 +669,15 @@
     });
   }
 
+  // Validation for radio fields
+
   const radio_field_ids = [
     "household_includes_elderly_or_disabled",
     "all_citizens_question",
+    "identify__user",
+    "household_includes_abawd",
+    "felony_question",
+    "disqualified_question",
   ];
 
   for (let i = 0; i < radio_field_ids.length; i++) {

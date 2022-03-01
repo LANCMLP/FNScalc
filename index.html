@@ -16,454 +16,772 @@
     <meta name="robots" content="noindex" />
     <!-- FOR A PROD SITE: Remove the 'noindex' tag so search engines can crawl the site. -->
   </head>
-  <body>
-    <div class="alert">
-      <div><strong>This is a demonstration website only.</strong></div>
-      <!-- FOR A PROD SITE: Remove the 'demonstration website only' language. -->
-      <div>This site is a tool to help navigate SNAP.</div>
-      <div>
-        Decisions about SNAP benefits in North Carolina are made by your
-        county's Department of Social Services.
+  <body onload="document.prescreenername.reset();">
+    <!-- New Popup -->
+
+    <div id="popup" class="overlay">
+      <div class="overlay-content">
+        <h1>By using this food stamps calculator, you acknowledge:</h1>
+        <ul style="font-size: x-large">
+          <li>
+            This is <b>not</b> an application for food stamps. This tool will
+            help estimate whether you are eligible, and provide a link to help
+            you apply.
+          </li>
+          <br />
+          <li>
+            Decisions about food stamps benefits in North Carolina are made only
+            by your county's Department of Social Services.
+          </li>
+          <br />
+          <li>
+            This screener <b>does not</b> store any of your personal identifying
+            information.
+          </li>
+          <br />
+          <li>
+            Using this screening tool <b>does not</b> make you a client
+            represented by Legal Aid of North Carolina.
+          </li>
+        </ul>
+        <button class="closebtn">
+          <span style="font-size: xx-large" onclick="closeNav()">
+            Click Here to Accept and Continue to the Calculator</span
+          >
+        </button>
+        <br />
+        <br />
       </div>
-      <div>This site does not store any personal information.</div>
     </div>
-    <div id="main" class="grid-container">
-      <div class="grid-row">
-        <div class="desktop:grid-col-8 desktop:grid-offset-2">
+
+    <!--Top banner alert-->
+    <div class="alert">
+      <div>
+        <strong
+          >This is a demonstration website only - last updated 2.28.22.
+          <br />
+          Not yet ready for internal or external use.
+        </strong>
+      </div>
+    </div>
+    <div id="main">
+      <div>
+        <div>
           <h1 class="title">
-            North Carolinians, could you be eligible for help with your food
-            budget?
+            Legal Aid of North Carolina
+            <br />
+            Food Stamps Screening Tool
           </h1>
           <p class="subtitle">
             Find out if you may be eligible for SNAP and an estimated amount of
             benefits you could receive.
+            <br />
+            <br />
+            Filling out this tool will take only about five minutes.
+            <br />
+            <br />
+            Refreshing this page will allow you to start this form from scratch.
           </p>
         </div>
-        <div class="desktop:grid-col-6 desktop:grid-offset-3 calculator">
-          <div
-            id="errors-header"
-            class="usa-prose"
-            aria-live="assertive"
-            role="alert"
-          ></div>
-          <form
-            id="prescreener-form"
-            class="usa-form"
-            data-state-or-territory="NC"
-            data-use-emergency-allotment="true"
-          >
-            <label
-              class="usa-label"
-              for="household_size"
-              id="household-size-label"
-            >
-              Household size
-              <span class="field-required"> *required </span>
-              <div id="household_size_error_elem"></div>
-            </label>
-            <div class="label-sub-text">
-              Your household is the people you live with and buy food with.
-              Include children 21 or younger, parents, and spouses if they live
-              with you.
-            </div>
-
-            <select
-              class="usa-select"
-              id="household_size"
-              name="household_size"
-            >
-              <option value>- Select -</option>
-              <option value="1">Just me</option>
-              <option value="2">2 people</option>
-              <option value="3">3 people</option>
-              <option value="4">4 people</option>
-              <option value="5">5 people</option>
-              <option value="6">6 people</option>
-              <option value="7">7 people</option>
-              <option value="8">8 people</option>
-              <option value="9">9 people</option>
-              <option value="10">10 people</option>
-              <option value="11">11 people</option>
-              <option value="12">12 people</option>
-              <option value="13">13 people</option>
-              <option value="14">14 people</option>
-              <option value="15">15 people</option>
-            </select>
-
-            <fieldset class="usa-fieldset">
-              <legend>
-                Does your household include someone who is 60 or older, or
-                someone who is disabled?
-                <span class="field-required"> *required </span>
-                <div
-                  id="household_includes_elderly_or_disabled_error_elem"
-                ></div>
-              </legend>
-
-              <div class="usa-radio">
-                <input
-                  class="usa-radio__input"
-                  id="input__household_includes_elderly_or_disabled_true"
-                  type="radio"
-                  name="household_includes_elderly_or_disabled"
-                  value="true"
-                />
-                <label
-                  id="label__household_includes_elderly_or_disabled_true"
-                  class="usa-radio__label"
-                  for="input__household_includes_elderly_or_disabled_true"
-                >
-                  Yes
-                </label>
-              </div>
-              <div class="usa-radio">
-                <input
-                  class="usa-radio__input"
-                  id="input__household_includes_elderly_or_disabled_false"
-                  type="radio"
-                  name="household_includes_elderly_or_disabled"
-                  value="false"
-                />
-                <label
-                  id="label__household_includes_elderly_or_disabled_false"
-                  class="usa-radio__label"
-                  for="input__household_includes_elderly_or_disabled_false"
-                >
-                  No
-                </label>
-              </div>
-            </fieldset>
-
-            <fieldset class="usa-fieldset">
-              <legend>
-                Is everyone on the application a U.S. citizen?
-                <span class="field-required"> *required </span>
-                <div id="all_citizens_question_error_elem"></div>
-              </legend>
-
-              <div class="label-sub-text">
-                Immigrants <strong>can</strong> be eligible for SNAP, depending
-                on their immigration status.
-              </div>
-
-              <div class="usa-radio">
-                <input
-                  class="usa-radio__input"
-                  id="input__all_citizens_question_true"
-                  type="radio"
-                  name="all_citizens_question"
-                  value="true"
-                />
-                <label
-                  id="label__all_citizens_question_true"
-                  class="usa-radio__label"
-                  for="input__all_citizens_question_true"
-                >
-                  Yes
-                </label>
-              </div>
-              <div class="usa-radio">
-                <input
-                  class="usa-radio__input"
-                  id="input__all_citizens_question_false"
-                  type="radio"
-                  name="all_citizens_question"
-                  value="false"
-                />
-                <label
-                  id="label__all_citizens_question_false"
-                  class="usa-radio__label"
-                  for="input__all_citizens_question_false"
-                >
-                  No
-                </label>
-              </div>
-            </fieldset>
-
+        <div class="allformelements">
+          <div>
             <div
-              id="citizenship_info_box"
-              class="usa-alert usa-alert--info usa-alert--slim hidden"
+              id="errors-header"
+              class="usa-prose"
+              aria-live="assertive"
+              role="alert"
+            ></div>
+
+            <!--Use the property below to indicate if emergency allotments are active. This is currently coded to push households to their max allotment-->
+
+            <form
+              id="prescreener-form"
+              class="usa-form"
+              data-state-or-territory="NC"
+              data-use-emergency-allotment="true"
+              name="prescreenername"
             >
-              <div class="usa-alert__body">
-                <p class="usa-alert__text">
-                  Your household may be eligible for SNAP, depending on your
-                  immigration status and the immigration status of your
-                  household members. Contact for more info:
-                  <a href="tel:{{HOTLINE_NUMBER}}">{{HOTLINE_NUMBER}}</a> or
-                  <a href="mailto:{{HOTLINE_EMAIL}}">{{HOTLINE_EMAIL}}</a>.
-                </p>
-                <!-- FOR A PROD SITE: Replace {{HOTLINE_NUMBER}} and {{HOTLINE_EMAIL}} with real contact information. -->
+              <!--Question - who is using this form-->
+
+              <fieldset class="usa-fieldset">
+                <legend>
+                  Why are you using this tool?
+                  <span class="field-required"> *required </span>
+                  <div id="identify_user"></div>
+                </legend>
+
+                <div class="usa-radio">
+                  <input
+                    class="usa-radio__input"
+                    id="input__general__public"
+                    type="radio"
+                    name="identify__user"
+                    value="general__public"
+                  />
+                  <label
+                    id="label__general__public"
+                    class="usa-radio__label"
+                    for="input__general__public"
+                  >
+                    To help me understand if I am eligible for food stamps, or
+                    see if my food stamps benefit amount is correct.
+                  </label>
+                </div>
+                <div class="usa-radio">
+                  <input
+                    class="usa-radio__input"
+                    id="input__lanc"
+                    type="radio"
+                    name="identify__user"
+                    value="lanc"
+                  />
+                  <label
+                    id="label__lanc"
+                    class="usa-radio__label"
+                    for="input__lanc"
+                  >
+                    I am a LANC attorney or advocate.
+                  </label>
+                </div>
+                <div class="usa-radio">
+                  <input
+                    class="usa-radio__input"
+                    id="input__advocate"
+                    type="radio"
+                    name="identify__user"
+                    value="advocate"
+                  />
+                  <label
+                    id="label__advocate"
+                    class="usa-radio__label"
+                    for="input__advocate"
+                  >
+                    I a non-LANC attorney, social worker, or other advocate
+                    trying to help a client with a food stamps issue.
+                  </label>
+                </div>
+              </fieldset>
+
+              <br />
+              <div class="steps">
+                <b>Step 1: Household Characteristics</b>
+                <div class="label-sub-text">
+                  These questions are about the categories of people in your
+                  household.
+                </div>
               </div>
-            </div>
+              <br />
 
-            <label class="usa-label" for="monthly_job_income">
-              <u>Monthly</u> household pre-tax income from jobs or
-              self-employment
-              <span class="field-required"> *required </span>
-              <div id="monthly_job_income_error_elem"></div>
-            </label>
+              <!--Household size question-->
 
-            <div class="currency_field_wrapper">
-              <div class="dollar_sign">$</div>
-              <input
-                id="monthly_job_income"
-                name="monthly_job_income"
-                class="usa-input"
-              />
-            </div>
-
-            <label class="usa-label" for="monthly_non_job_income">
-              <u>Monthly</u> household income from other sources
-              <span class="field-required"> *required </span>
-              <div id="monthly_non_job_income_error_elem"></div>
-            </label>
-            <div class="label-sub-text">
-              This includes Social Security, disability, Child Support, Worker's
-              Comp, Unemployment, Pension Income, or other sources of income.
-            </div>
-
-            <div class="currency_field_wrapper">
-              <div class="dollar_sign">$</div>
-              <input
-                id="monthly_non_job_income"
-                name="monthly_non_job_income"
-                class="usa-input"
-              />
-            </div>
-
-            <label class="usa-label" for="resources">
-              Total resources
-              <span class="field-required"> *required </span>
-              <div id="resources_error_elem"></div>
-            </label>
-            <div class="label-sub-text">
-              This means countable resources, like funds in bank accounts. A
-              home is not counted as a resource.
-            </div>
-
-            <div class="currency_field_wrapper">
-              <div class="dollar_sign">$</div>
-              <input id="resources" name="resources" class="usa-input" />
-            </div>
-
-            <label class="usa-label" for="dependent_care_costs">
-              Dependent care costs
-              <div id="dependent_care_costs_error_elem"></div>
-            </label>
-            <div class="label-sub-text">
-              This includes the costs of daycare, babysitters, or other child
-              care; fees for before-school and after-school care; costs for
-              special needs care.
-            </div>
-            <div class="currency_field_wrapper">
-              <div class="dollar_sign">$</div>
-              <input
-                id="dependent_care_costs"
-                name="dependent_care_costs"
-                class="usa-input"
-              />
-            </div>
-
-            <div
-              id="medical_expenses_for_elderly_or_disabled_question"
-              class="hidden"
-            >
               <label
                 class="usa-label"
-                for="medical_expenses_for_elderly_or_disabled"
+                for="household_size"
+                id="household-size-label"
               >
-                Monthly out of pocket medical expenses for household members who
-                are age 60 or older or disabled
-                <div
-                  id="medical_expenses_for_elderly_or_disabled_error_elem"
-                ></div>
+                Household size
+                <span class="field-required"> *required </span>
+                <div id="household_size_error_elem"></div>
+              </label>
+              <div class="label-sub-text">
+                Your household is the people you live with and buy food with.
+                Include children 21 or younger, parents, and spouses if they
+                live with you.
+              </div>
+
+              <select
+                class="usa-select"
+                id="household_size"
+                name="household_size"
+              >
+                <option value>- Select -</option>
+                <option value="1">Just me</option>
+                <option value="2">2 people</option>
+                <option value="3">3 people</option>
+                <option value="4">4 people</option>
+                <option value="5">5 people</option>
+                <option value="6">6 people</option>
+                <option value="7">7 people</option>
+                <option value="8">8 people</option>
+                <option value="9">9 people</option>
+                <option value="10">10 people</option>
+                <option value="11">11 people</option>
+                <option value="12">12 people</option>
+                <option value="13">13 people</option>
+                <option value="14">14 people</option>
+                <option value="15">15 people</option>
+              </select>
+
+              <!---- Disqualification Question --->
+
+              <fieldset class="usa-fieldset">
+                <legend>
+                  Is anyone in your household currently disqualified from
+                  receiving food stamps?
+                  <span class="field-required"> *required </span>
+                  <div id="household_includes_disqualified_error_elem"></div>
+                </legend>
+
+                <div class="usa-radio">
+                  <input
+                    class="usa-radio__input"
+                    id="input__household_includes_disqualified_true"
+                    type="radio"
+                    name="disqualified_question"
+                    value="true"
+                  />
+                  <label
+                    id="label__disqualified_true"
+                    class="usa-radio__label"
+                    for="input__household_includes_disqualified_true"
+                  >
+                    Yes
+                  </label>
+                </div>
+                <div class="usa-radio">
+                  <input
+                    class="usa-radio__input"
+                    id="input__household_includes_disqualified_false"
+                    type="radio"
+                    name="disqualified_question"
+                    value="false"
+                  />
+                  <label
+                    id="label__disqualified_false"
+                    class="usa-radio__label"
+                    for="input__household_includes_disqualified_false"
+                  >
+                    No
+                  </label>
+                </div>
+              </fieldset>
+
+              <!---- Felony Question --->
+
+              <fieldset class="usa-fieldset">
+                <legend>
+                  Has anyone in your household been convicted of a drug-related
+                  felony since August 23, 1996?
+                  <span class="field-required"> *required </span>
+                  <div id="household_includes_felony_error_elem"></div>
+                </legend>
+
+                <div class="usa-radio">
+                  <input
+                    class="usa-radio__input"
+                    id="input__household_includes_felony_true"
+                    type="radio"
+                    name="felony_question"
+                    value="true"
+                  />
+                  <label
+                    id="label__felony_true"
+                    class="usa-radio__label"
+                    for="input__household_includes_felony_true"
+                  >
+                    Yes
+                  </label>
+                </div>
+                <div class="usa-radio">
+                  <input
+                    class="usa-radio__input"
+                    id="input__household_includes_felony_false"
+                    type="radio"
+                    name="felony_question"
+                    value="false"
+                  />
+                  <label
+                    id="label__felony_false"
+                    class="usa-radio__label"
+                    for="input__household_includes_felony_false"
+                  >
+                    No
+                  </label>
+                </div>
+              </fieldset>
+
+              <!---- Elderly/Disabled Question --->
+
+              <fieldset class="usa-fieldset">
+                <legend>
+                  Does your household include someone who is 60 or older, or
+                  someone who is disabled?
+                  <span class="field-required"> *required </span>
+                  <div
+                    id="household_includes_elderly_or_disabled_error_elem"
+                  ></div>
+                </legend>
+
+                <div class="usa-radio">
+                  <input
+                    class="usa-radio__input"
+                    id="input__household_includes_elderly_or_disabled_true"
+                    type="radio"
+                    name="household_includes_elderly_or_disabled"
+                    value="true"
+                  />
+                  <label
+                    id="label__household_includes_elderly_or_disabled_true"
+                    class="usa-radio__label"
+                    for="input__household_includes_elderly_or_disabled_true"
+                  >
+                    Yes
+                  </label>
+                </div>
+                <div class="usa-radio">
+                  <input
+                    class="usa-radio__input"
+                    id="input__household_includes_elderly_or_disabled_false"
+                    type="radio"
+                    name="household_includes_elderly_or_disabled"
+                    value="false"
+                  />
+                  <label
+                    id="label__household_includes_elderly_or_disabled_false"
+                    class="usa-radio__label"
+                    for="input__household_includes_elderly_or_disabled_false"
+                  >
+                    No
+                  </label>
+                </div>
+              </fieldset>
+
+              <!--ABAWD Question-->
+
+              <fieldset class="usa-fieldset">
+                <legend>
+                  Does your household include someone between the ages of 18-49?
+                  <span class="field-required"> *required </span>
+                  <div id="abawd_elem"></div>
+                </legend>
+
+                <div class="usa-radio">
+                  <input
+                    class="usa-radio__input"
+                    id="input__household_includes_abawd_true"
+                    type="radio"
+                    name="household_includes_abawd"
+                    value="true"
+                  />
+                  <label
+                    id="label__household_includes_abawd_true"
+                    class="usa-radio__label"
+                    for="input__household_includes_abawd_true"
+                  >
+                    Yes
+                  </label>
+                </div>
+                <div class="usa-radio">
+                  <input
+                    class="usa-radio__input"
+                    id="input__household_includes_abawd_false"
+                    type="radio"
+                    name="household_includes_abawd"
+                    value="false"
+                  />
+                  <label
+                    id="label__household_includes_abawd_false"
+                    class="usa-radio__label"
+                    for="input__household_includes_abawd_false"
+                  >
+                    No
+                  </label>
+                </div>
+              </fieldset>
+
+              <div
+                id="abawd_info_box"
+                class="usa-alert usa-alert--info usa-alert--slim hidden"
+              >
+                <div class="usa-alert__body">
+                  <p class="usa-alert__text">
+                    Members of your household who are age 18-49 may need to
+                    either be working or searching for work in order to be
+                    included in the household for more than three months. If
+                    they are unable to work, there are a number of exceptions to
+                    this rule, including disability and having a child. More
+                    detailed information about work requirements will be
+                    available once you finish the form hit "Submit" below.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Citizenship Question -->
+
+              <fieldset class="usa-fieldset">
+                <legend>
+                  Is everyone on the application a U.S. citizen?
+                  <span class="field-required"> *required </span>
+                  <div id="all_citizens_question_error_elem"></div>
+                </legend>
+
+                <div class="label-sub-text">
+                  Immigrants <strong>can</strong> be eligible for SNAP,
+                  depending on their immigration status.
+                </div>
+
+                <div class="usa-radio">
+                  <input
+                    class="usa-radio__input"
+                    id="input__all_citizens_question_true"
+                    type="radio"
+                    name="all_citizens_question"
+                    value="true"
+                  />
+                  <label
+                    id="label__all_citizens_question_true"
+                    class="usa-radio__label"
+                    for="input__all_citizens_question_true"
+                  >
+                    Yes
+                  </label>
+                </div>
+                <div class="usa-radio">
+                  <input
+                    class="usa-radio__input"
+                    id="input__all_citizens_question_false"
+                    type="radio"
+                    name="all_citizens_question"
+                    value="false"
+                  />
+                  <label
+                    id="label__all_citizens_question_false"
+                    class="usa-radio__label"
+                    for="input__all_citizens_question_false"
+                  >
+                    No
+                  </label>
+                </div>
+              </fieldset>
+
+              <div
+                id="citizenship_info_box"
+                class="usa-alert usa-alert--info usa-alert--slim hidden"
+              >
+                <div class="usa-alert__body">
+                  <p class="usa-alert__text">
+                    Your household may be eligible for SNAP, depending on your
+                    immigration status and the immigration status of your
+                    household members. Contact for more info:
+                    <a href="tel:{{HOTLINE_NUMBER}}">{{HOTLINE_NUMBER}}</a> or
+                    <a href="mailto:{{HOTLINE_EMAIL}}">{{HOTLINE_EMAIL}}</a>.
+                  </p>
+                  <!-- FOR A PROD SITE: Replace {{HOTLINE_NUMBER}} and {{HOTLINE_EMAIL}} with real contact information. -->
+                </div>
+              </div>
+
+              <br />
+              <div class="steps">
+                <b>Step 2: Household Income and Resources</b>
+                <div class="label-sub-text">
+                  These questions are about the income and assets for your
+                  household. You should include amounts for all household
+                  members added together.
+                </div>
+              </div>
+              <br />
+
+              <!--Earned income question-->
+
+              <label class="usa-label" for="monthly_job_income">
+                <u>Monthly</u> household pre-tax income from jobs or
+                self-employment
+                <span class="field-required"> *required </span>
+                <div id="monthly_job_income_error_elem"></div>
               </label>
 
               <div class="currency_field_wrapper">
                 <div class="dollar_sign">$</div>
                 <input
-                  id="medical_expenses_for_elderly_or_disabled"
-                  name="medical_expenses_for_elderly_or_disabled"
+                  id="monthly_job_income"
+                  name="monthly_job_income"
                   class="usa-input"
                 />
               </div>
-            </div>
 
-            <label class="usa-label" for="court_ordered_child_support_payments">
-              Monthly court-ordered child support payments
-              <div id="court_ordered_child_support_payments_error_elem"></div>
-            </label>
+              <!--Unearned income question-->
 
-            <div class="currency_field_wrapper">
-              <div class="dollar_sign">$</div>
+              <label class="usa-label" for="monthly_non_job_income">
+                <u>Monthly</u> household income from other sources
+                <span class="field-required"> *required </span>
+                <div id="monthly_non_job_income_error_elem"></div>
+              </label>
+              <div class="label-sub-text">
+                This includes Social Security, disability, Child Support,
+                Worker's Comp, Unemployment, Pension Income, or other sources of
+                income.
+              </div>
+
+              <div class="currency_field_wrapper">
+                <div class="dollar_sign">$</div>
+                <input
+                  id="monthly_non_job_income"
+                  name="monthly_non_job_income"
+                  class="usa-input"
+                />
+              </div>
+
+              <!--Resources question-->
+
+              <label class="usa-label" for="resources">
+                Total resources
+                <span class="field-required"> *required </span>
+                <div id="resources_error_elem"></div>
+              </label>
+              <div class="label-sub-text">
+                This means countable resources, like funds in bank accounts. A
+                home is not counted as a resource.
+              </div>
+
+              <div class="currency_field_wrapper">
+                <div class="dollar_sign">$</div>
+                <input id="resources" name="resources" class="usa-input" />
+              </div>
+
+              <br />
+              <div class="steps">
+                <b>Step 3: Household Costs</b>
+                <div class="label-sub-text">
+                  These questions are about monthly costs that are deducted from
+                  your income.
+                </div>
+              </div>
+
+              <!--Dependent care question-->
+
+              <label class="usa-label" for="dependent_care_costs">
+                Dependent care costs
+                <div id="dependent_care_costs_error_elem"></div>
+              </label>
+              <div class="label-sub-text">
+                This includes the costs of daycare, babysitters, or other child
+                care; fees for before-school and after-school care; costs for
+                special needs care.
+              </div>
+              <div class="currency_field_wrapper">
+                <div class="dollar_sign">$</div>
+                <input
+                  id="dependent_care_costs"
+                  name="dependent_care_costs"
+                  class="usa-input"
+                />
+              </div>
+
+              <!--Medical expenses question-->
+
+              <div
+                id="medical_expenses_for_elderly_or_disabled_question"
+                class="hidden"
+              >
+                <label
+                  class="usa-label"
+                  for="medical_expenses_for_elderly_or_disabled"
+                >
+                  Monthly out of pocket medical expenses for household members
+                  who are age 60 or older or disabled
+                  <div
+                    id="medical_expenses_for_elderly_or_disabled_error_elem"
+                  ></div>
+                </label>
+
+                <div class="currency_field_wrapper">
+                  <div class="dollar_sign">$</div>
+                  <input
+                    id="medical_expenses_for_elderly_or_disabled"
+                    name="medical_expenses_for_elderly_or_disabled"
+                    class="usa-input"
+                  />
+                </div>
+              </div>
+
+              <!--Child support question-->
+
+              <label
+                class="usa-label"
+                for="court_ordered_child_support_payments"
+              >
+                Monthly court-ordered child support payments
+                <div id="court_ordered_child_support_payments_error_elem"></div>
+              </label>
+
+              <div class="currency_field_wrapper">
+                <div class="dollar_sign">$</div>
+                <input
+                  id="court_ordered_child_support_payments"
+                  name="court_ordered_child_support_payments"
+                  class="usa-input"
+                />
+              </div>
+
+              <!--Rent or mortgage question-->
+
+              <label class="usa-label" for="rent_or_mortgage">
+                Monthly rent or mortgage amount
+                <div id="rent_or_mortgage_error_elem"></div>
+              </label>
+
+              <div class="currency_field_wrapper">
+                <div class="dollar_sign">$</div>
+                <input
+                  id="rent_or_mortgage"
+                  name="rent_or_mortgage"
+                  class="usa-input"
+                />
+              </div>
+
+              <!--Homeowner's insurance question-->
+
+              <label class="usa-label" for="homeowners_insurance_and_taxes">
+                Monthly homeowners insurance and taxes
+                <div id="homeowners_insurance_and_taxes_error_elem"></div>
+              </label>
+
+              <div class="currency_field_wrapper">
+                <div class="dollar_sign">$</div>
+                <input
+                  id="homeowners_insurance_and_taxes"
+                  name="homeowners_insurance_and_taxes"
+                  class="usa-input"
+                />
+              </div>
+
+              <!--Utilities question-->
+
+              <fieldset class="usa-fieldset">
+                <legend>
+                  Do you pay for any utilities separately from your rent or
+                  mortgage?
+                </legend>
+                <div class="usa-radio">
+                  <input
+                    class="usa-radio__input"
+                    id="heating_cooling_true"
+                    type="radio"
+                    name="utility_allowance"
+                    value="HEATING_AND_COOLING"
+                  />
+                  <label
+                    id="label__heating_cooling_true"
+                    class="usa-radio__label"
+                    for="heating_cooling_true"
+                  >
+                    Yes, I pay for heating and/or cooling.
+                  </label>
+                </div>
+                <div class="usa-radio">
+                  <input
+                    class="usa-radio__input"
+                    id="basic_limited_allowance_true"
+                    type="radio"
+                    name="utility_allowance"
+                    value="BASIC_LIMITED_ALLOWANCE"
+                  />
+                  <label
+                    id="label__basic_limited_allowance_true"
+                    class="usa-radio__label"
+                    for="basic_limited_allowance_true"
+                  >
+                    Yes, I pay for two of the following utilities: cooking fuel,
+                    electric, water/sewer, trash, or telephone.
+                  </label>
+                </div>
+                <div class="usa-radio">
+                  <input
+                    class="usa-radio__input"
+                    id="phone_true"
+                    type="radio"
+                    name="utility_allowance"
+                    value="PHONE"
+                  />
+                  <label
+                    id="label__phone_true"
+                    class="usa-radio__label"
+                    for="phone_true"
+                  >
+                    Yes, I only pay for my landline or cell phone.
+                  </label>
+                </div>
+                <div class="usa-radio">
+                  <input
+                    class="usa-radio__input"
+                    id="heating_cooling_false"
+                    type="radio"
+                    name="utility_allowance"
+                    value="NONE"
+                  />
+                  <label
+                    id="label__heating_cooling_false"
+                    class="usa-radio__label"
+                    for="heating_cooling_false"
+                  >
+                    No, I do not pay for utilities separately from my rent or
+                    mortgage.
+                  </label>
+                </div>
+                <div class="usa-radio">
+                  <input
+                    class="usa-radio__input"
+                    id="homeless_true"
+                    type="radio"
+                    name="utility_allowance"
+                    value="HOMELESS"
+                  />
+                  <label
+                    id="label__homeless_true"
+                    class="usa-radio__label"
+                    for="homeless_true"
+                  >
+                    No, I am currently experiencing homelessness.
+                  </label>
+                </div>
+              </fieldset>
+
+              <!-- SUBMIT BUTTON -->
+
               <input
-                id="court_ordered_child_support_payments"
-                name="court_ordered_child_support_payments"
-                class="usa-input"
+                id="prescreener-form-submit"
+                class="usa-button"
+                type="submit"
+                value="Submit"
               />
-            </div>
-
-            <label class="usa-label" for="rent_or_mortgage">
-              Monthly rent or mortgage amount
-              <div id="rent_or_mortgage_error_elem"></div>
-            </label>
-
-            <div class="currency_field_wrapper">
-              <div class="dollar_sign">$</div>
-              <input
-                id="rent_or_mortgage"
-                name="rent_or_mortgage"
-                class="usa-input"
-              />
-            </div>
-
-            <label class="usa-label" for="homeowners_insurance_and_taxes">
-              Monthly homeowners insurance and taxes
-              <div id="homeowners_insurance_and_taxes_error_elem"></div>
-            </label>
-
-            <div class="currency_field_wrapper">
-              <div class="dollar_sign">$</div>
-              <input
-                id="homeowners_insurance_and_taxes"
-                name="homeowners_insurance_and_taxes"
-                class="usa-input"
-              />
-            </div>
-
-            <fieldset class="usa-fieldset">
-              <legend>
-                Do you pay for any utilities separately from your rent or
-                mortgage?
-              </legend>
-              <div class="usa-radio">
-                <input
-                  class="usa-radio__input"
-                  id="heating_cooling_true"
-                  type="radio"
-                  name="utility_allowance"
-                  value="HEATING_AND_COOLING"
-                />
-                <label
-                  id="label__heating_cooling_true"
-                  class="usa-radio__label"
-                  for="heating_cooling_true"
-                >
-                  Yes, I pay for heating and/or cooling.
-                </label>
+            </form>
+            <section id="server-error-messages"></section>
+            <section
+              id="results-section"
+              class="usa-prose result-section hidden"
+              role="alert"
+            >
+              <div id="results"></div>
+              <div class="usa-accordion">
+                <h2 class="usa-accordion__heading">
+                  <button
+                    id="why-did-i-get-this-result-button"
+                    class="usa-accordion__button"
+                    aria-expanded="false"
+                    aria-controls="a1"
+                  >
+                    Why did I get this result?
+                  </button>
+                </h2>
+                <div id="a1" class="usa-accordion__content usa-prose">
+                  <p id="why-did-i-get-this-result"></p>
+                </div>
+                <h2 class="usa-accordion__heading">
+                  <button
+                    id="how-are-gross-and-net-income-calculated-button"
+                    class="usa-accordion__button"
+                    aria-expanded="false"
+                    aria-controls="a2"
+                  >
+                    How are gross and net income calculated?
+                  </button>
+                </h2>
+                <div id="a2" class="usa-accordion__content usa-prose">
+                  <p id="how-are-gross-and-net-income-calculated"></p>
+                </div>
               </div>
-              <div class="usa-radio">
-                <input
-                  class="usa-radio__input"
-                  id="basic_limited_allowance_true"
-                  type="radio"
-                  name="utility_allowance"
-                  value="BASIC_LIMITED_ALLOWANCE"
-                />
-                <label
-                  id="label__basic_limited_allowance_true"
-                  class="usa-radio__label"
-                  for="basic_limited_allowance_true"
-                >
-                  Yes, I pay for two of the following utilities: cooking fuel,
-                  electric, water/sewer, trash, or telephone.
-                </label>
-              </div>
-              <div class="usa-radio">
-                <input
-                  class="usa-radio__input"
-                  id="phone_true"
-                  type="radio"
-                  name="utility_allowance"
-                  value="PHONE"
-                />
-                <label
-                  id="label__phone_true"
-                  class="usa-radio__label"
-                  for="phone_true"
-                >
-                  Yes, I only pay for my landline or cell phone.
-                </label>
-              </div>
-              <div class="usa-radio">
-                <input
-                  class="usa-radio__input"
-                  id="heating_cooling_false"
-                  type="radio"
-                  name="utility_allowance"
-                  value="NONE"
-                />
-                <label
-                  id="label__heating_cooling_false"
-                  class="usa-radio__label"
-                  for="heating_cooling_false"
-                >
-                  No, I do not pay for utilities separately from my rent or
-                  mortgage.
-                </label>
-              </div>
-              <div class="usa-radio">
-                <input
-                  class="usa-radio__input"
-                  id="homeless_true"
-                  type="radio"
-                  name="utility_allowance"
-                  value="HOMELESS"
-                />
-                <label
-                  id="label__homeless_true"
-                  class="usa-radio__label"
-                  for="homeless_true"
-                >
-                  No, I am currently experiencing homelessness.
-                </label>
-              </div>
-            </fieldset>
-
-            <!-- SUBMIT BUTTON -->
-            <input
-              id="prescreener-form-submit"
-              class="usa-button"
-              type="submit"
-              value="Submit"
-            />
-          </form>
-          <section id="server-error-messages"></section>
-          <section
-            id="results-section"
-            class="usa-prose result-section hidden"
-            role="alert"
-          >
-            <div id="results"></div>
-            <div class="usa-accordion">
-              <h2 class="usa-accordion__heading">
-                <button
-                  id="why-did-i-get-this-result-button"
-                  class="usa-accordion__button"
-                  aria-expanded="false"
-                  aria-controls="a1"
-                >
-                  Why did I get this result?
-                </button>
-              </h2>
-              <div id="a1" class="usa-accordion__content usa-prose">
-                <p id="why-did-i-get-this-result"></p>
-              </div>
-              <h2 class="usa-accordion__heading">
-                <button
-                  id="how-are-gross-and-net-income-calculated-button"
-                  class="usa-accordion__button"
-                  aria-expanded="false"
-                  aria-controls="a2"
-                >
-                  How are gross and net income calculated?
-                </button>
-              </h2>
-              <div id="a2" class="usa-accordion__content usa-prose">
-                <p id="how-are-gross-and-net-income-calculated"></p>
-              </div>
-            </div>
-          </section>
+            </section>
+          </div>
         </div>
       </div>
     </div>
@@ -474,6 +792,18 @@
       >.<!-- FOR A PROD SITE: Replace {{HOTLINE_NUMBER}} and {{HOTLINE_EMAIL}} with real contact information. -->
     </footer>
   </body>
+
+  <script>
+    function openNav() {
+      document.getElementById("popup").style.width = "100%";
+    }
+
+    /* Close when someone clicks on the button inside the overlay */
+    function closeNav() {
+      document.getElementById("popup").style.display = "none";
+    }
+  </script>
+
   <script
     type="text/javascript"
     src="shared/css/uswds-2.4.0/js/uswds.min.js"
