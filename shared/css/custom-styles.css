@@ -206,3 +206,9 @@ footer#snap-calculator-footer div {
 .overlay .closebtn:hover {
   background-color: rgba(10, 144, 10, 0.739);
 }
+
+@media only screen and (max-width: 600px) {
+  .overlay-content {
+    font-size: 20px;
+  }
+}
