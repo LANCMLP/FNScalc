@@ -223,5 +223,5 @@ footer#snap-calculator-footer div {
   display: block;
   margin: auto;
   height: 225px;
-  object-fit: cover;
+  object-fit: scale-down;
 }
