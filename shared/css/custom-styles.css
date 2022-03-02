@@ -143,7 +143,7 @@ fieldset.usa-fieldset legend {
 
 footer#snap-calculator-footer {
   color: white;
-  background-color: #005ea2;
+  background-color: #0d1d41;
   text-align: center;
   width: 100%;
   padding: 16px;
@@ -158,10 +158,11 @@ footer#snap-calculator-footer div {
 }
 
 .allformelements {
-  width: 80%;
-  margin: 0 auto;
+  position: static;
+  display: grid;
+  align-content: center;
+  place-content: center;
 }
-
 /* New Popup -   /* Height & width depends on how you want to reveal the overlay (see JS below) */
 
 .overlay {
@@ -224,4 +225,50 @@ footer#snap-calculator-footer div {
   margin: auto;
   height: 225px;
   object-fit: scale-down;
+}
+
+/* Tabbed Form Controls */
+
+/* Hide all steps by default: */
+.tab {
+  display: none;
+}
+
+/* Make circles that indicate the steps of the form: */
+.step-indicator {
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbbbbb;
+  border: none;
+  border-radius: 0px;
+  display: inline-flex;
+  opacity: 0.5;
+}
+
+/* Mark the active step: */
+.step-indicator.active {
+  background-color: #0d1d41;
+  opacity: 1;
+}
+
+/* Mark the steps that are finished and valid: */
+.step-indicator.finish {
+  background-color: #0d1d41;
+}
+
+.progress-button {
+  position: relative;
+  text-align: center;
+  padding: 2px;
+}
+
+.submit-button {
+  width: 100%;
+  background-color: #0d1d41;
+  color: white;
+}
+
+.steps {
+  font-size: larger;
 }
