@@ -148,6 +148,19 @@
     hideCitizenshipInfobox: DOM_MANIPULATORS["hideElem"](
       "citizenship_info_box"
     ),
+    showIneligible_Immigration: DOM_MANIPULATORS["showElem"](
+      "ineligible_immigration_question"
+    ),
+    hideIneligible_Immigration: DOM_MANIPULATORS["hideElem"](
+      "ineligible_immigration_question"
+    ),
+    showNumberDisqualified: DOM_MANIPULATORS["showElem"](
+      "ineligible_disqualified_question"
+    ),
+    hideNumberDisqualified: DOM_MANIPULATORS["hideElem"](
+      "ineligible_disqualified_question"
+    ),
+
     showABAWDInfobox: DOM_MANIPULATORS["showElem"]("abawd_info_box"),
     hideABAWDInfobox: DOM_MANIPULATORS["hideElem"]("abawd_info_box"),
     showMedicalExpensesForElderlyOrDisabled: DOM_MANIPULATORS["showElem"](
@@ -284,6 +297,8 @@
       // Validation for number fields:
       const number_field_ids = [
         "household_size",
+        "ineligible_immigration",
+        "ineligible_disqualified",
         "monthly_job_income",
         "monthly_non_job_income",
         "resources",
@@ -303,7 +318,7 @@
           if (!FORM_CONTROLS["numberFieldValid"](number_elem.value)) {
             errors.push({
               name: field_id,
-              message: `You have entered letters in one or more answers that required a number.`,
+              message: `You have entered letters in one or more answers that require a number value.`,
             });
           }
         }
@@ -618,6 +633,20 @@
       FORM_CONTROLS["showCitizenshipInfobox"]();
     });
 
+  // Set up toggle of lawfully present question.
+
+  document
+    .getElementById("input__all_citizens_question_false")
+    .addEventListener("change", () => {
+      FORM_CONTROLS["showIneligible_Immigration"]();
+    });
+
+  document
+    .getElementById("input__all_citizens_question_true")
+    .addEventListener("change", () => {
+      FORM_CONTROLS["hidehideIneligible_Immigration"]();
+    });
+
   // Set up toggle of abawd infobox in response to abawd question.
   document
     .getElementById("input__household_includes_abawd_true")
@@ -629,6 +658,32 @@
     .getElementById("input__household_includes_abawd_false")
     .addEventListener("change", () => {
       FORM_CONTROLS["hideABAWDInfobox"]();
+    });
+
+  // Set up toggle of disqualified question.
+
+  document
+    .getElementById("input__household_includes_disqualified_true")
+    .addEventListener("change", () => {
+      FORM_CONTROLS["showNumberDisqualified"]();
+    });
+
+  document
+    .getElementById("input__household_includes_disqualified_false")
+    .addEventListener("change", () => {
+      FORM_CONTROLS["hideNumberDisqualified"]();
+    });
+
+  document
+    .getElementById("input__household_includes_felony_true")
+    .addEventListener("change", () => {
+      FORM_CONTROLS["showNumberDisqualified"]();
+    });
+
+  document
+    .getElementById("input__household_includes_felony_false")
+    .addEventListener("change", () => {
+      FORM_CONTROLS["hideNumberDisqualified"]();
     });
 
   // Set up toggle of medical expenses question in response to elderly or disabled question result.
@@ -646,6 +701,9 @@
 
   // Set up validation for number fields.
   const number_field_ids = [
+    "household_size",
+    "ineligible_immigration",
+    "ineligible_disqualified",
     "monthly_job_income",
     "monthly_non_job_income",
     "resources",

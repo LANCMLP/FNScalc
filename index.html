@@ -212,7 +212,7 @@
                   id="household_size"
                   name="household_size"
                 >
-              </input>
+                </input>
 
                 <!---- Elderly/Disabled Question --->
 
@@ -315,8 +315,8 @@
                       included in the household for more than three months. If
                       they are unable to work, there are a number of exceptions
                       to this rule, including disability and having a child.
-                      More detailed information about work requirements will be
-                      available once you finish the form hit "Submit" below.
+                      More information about work requirements will be
+                      available with the results of this calculator.
                     </p>
                   </div>
                 </div>
@@ -331,8 +331,8 @@
                   </legend>
 
                   <div class="label-sub-text">
-                    Immigrants <strong>can</strong> be eligible for SNAP,
-                    depending on their immigration status.
+                    Immigrants <strong>can</strong> be eligible for food stamps,
+                    depending on their immigration status. This calculator does not save any information regarding citizenship status.
                   </div>
 
                   <div class="usa-radio">
@@ -374,16 +374,33 @@
                   class="usa-alert usa-alert--info usa-alert--slim hidden"
                 >
                   <div class="usa-alert__body">
-                    <p class="usa-alert__text">
-                      Your household may be eligible for SNAP, depending on your
-                      immigration status and the immigration status of your
-                      household members. Contact for more info:
-                      <a href="tel:{{HOTLINE_NUMBER}}">{{HOTLINE_NUMBER}}</a> or
-                      <a href="mailto:{{HOTLINE_EMAIL}}">{{HOTLINE_EMAIL}}</a>.
-                    </p>
-                    <!-- FOR A PROD SITE: Replace {{HOTLINE_NUMBER}} and {{HOTLINE_EMAIL}} with real contact information. -->
+                    <p class="usa-alert__text"> The results from this calculator will include more information about immigrant eligibility for food stamps.</p>
                   </div>
                 </div>
+
+                <!-- Number of Non-Citizens -->
+
+                  <fieldset class="usa-fieldset hidden" id="ineligible_immigration_question">
+                  <label
+                    class="usa-label"
+                    for="ineligible_immigration"
+                    id="ineligible_immigration-label"
+                  >
+                    How many members of your household are lawfully present in the United States?
+                  </label>
+                  <div class="label-sub-text">
+                    This includes, but is not limited to, U.S. citizens, legal permanent residents (green cards), refugees, and asylees. <br>
+                    Remember, this form does not record any personal identifying information. <br>
+                    This answer is not required, however, your food stamps amount estimate may be incorrect if it is left blank.
+                  </div>
+  
+                  <input
+                    class="usa-input"
+                    id="ineligible_immigration"
+                    name="ineligible_immigration"
+                  >
+                </input>
+              </fieldset>
 
                 <!---- Disqualification Question --->
 
@@ -472,7 +489,31 @@
                     </label>
                   </div>
                 </fieldset>
-              </div>
+
+              <!-- Number of Disqualified/Felony -->
+
+              <fieldset class="usa-fieldset hidden" id="ineligible_disqualified_question">
+                <label
+                  class="usa-label"
+                  for="ineligible_disqualified"
+                  id="ineligible_disqualified-label"
+                >
+                  How many members of your household do the last two questions include?
+                </label>
+                <div class="label-sub-text">
+                  If someone was convicted of a drug felony <b>and</b> was also disqualified, only count them once here. Remember, this form does not record any personal identifying information.<br>
+                  This answer is not required, however, your food stamps amount estimate may be incorrect if it is left blank.
+                </div>
+
+                <input
+                  class="usa-input"
+                  id="ineligible_disqualified"
+                  name="ineligible_disqualified"
+                >
+              </input>
+            </fieldset>
+
+            </div>
 
               <br />
 
