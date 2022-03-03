@@ -319,6 +319,7 @@
       if (errors.length === 0) {
         // If valid, send data to API library:
         FORM_SUBMIT_FUNCS["sendData"](jsonData);
+        document.getElementById("prescreener-form").style.display = "none";
       } else {
         window.hasShownErrors = true;
         FORM_SUBMIT_FUNCS["updateClientErrorMessages"](errors);
