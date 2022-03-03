@@ -142,11 +142,14 @@ fieldset.usa-fieldset legend {
 /* Footer styles */
 
 footer#snap-calculator-footer {
+  position: static;
+  bottom: 0;
   color: white;
   background-color: #0d1d41;
   text-align: center;
   width: 100%;
-  padding: 16px;
+  padding: 40px;
+  font-size: larger;
 }
 
 footer#snap-calculator-footer a {

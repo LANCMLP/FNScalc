@@ -798,6 +798,7 @@
                     class="submit-button"
                     type="submit"
                     value="Submit"
+                    style="display: none"
                   />
                 </div>
               </div>
@@ -845,11 +846,12 @@
         </div>
       </div>
     </div>
+
+    <!-- Footer -->
     <footer id="snap-calculator-footer">
-      Questions about your result? Confused about anything on this form? Reach
-      out: <a href="tel:{{HOTLINE_NUMBER}}">{{HOTLINE_NUMBER}}</a> or
-      <a href="mailto:{{HOTLINE_EMAIL}}">{{HOTLINE_EMAIL}}</a
-      >.<!-- FOR A PROD SITE: Replace {{HOTLINE_NUMBER}} and {{HOTLINE_EMAIL}} with real contact information. -->
+      To apply for legal assistance from Legal Aid of North Carolina, please 
+      <a href=https://legalaidnc.org/get-help/apply-online>click here</a
+      >.
     </footer>
   </body>
 
@@ -888,6 +890,9 @@
       } else {
         document.getElementById("nextBtn").style.display = "block";
       }
+      if (n == x.length - 1) {
+      document.getElementById("prescreener-form-submit").style.display = "block";}
+      else {document.getElementById("prescreener-form-submit").style.display = "none";}
       // ... and run a function that displays the correct step indicator:
       fixStepIndicator(n);
     }
