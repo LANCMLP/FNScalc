@@ -204,40 +204,18 @@
       // Validate:
       const errors = [];
 
+      if (jsonData["identify__user"] === undefined) {
+        errors.push({
+          name: "identify__user",
+          message:
+            "Before We Begin: Please indicate why you are using this calculator.",
+        });
+      }
+
       if (jsonData["household_size"] === "") {
         errors.push({
           name: "household_size",
-          message: "Select a household size",
-        });
-      }
-
-      if (jsonData["monthly_job_income"] === "") {
-        errors.push({
-          name: "monthly_job_income",
-          message:
-            "Enter monthly household pre-tax income from jobs or self-employment",
-        });
-      }
-
-      if (jsonData["monthly_non_job_income"] === "") {
-        errors.push({
-          name: "monthly_non_job_income",
-          message: "Enter monthly household income from other sources",
-        });
-      }
-
-      if (jsonData["resources"] === "") {
-        errors.push({
-          name: "resources",
-          message: "Enter total resources amount",
-        });
-      }
-
-      if (jsonData["household_includes_elderly_or_disabled"] === undefined) {
-        errors.push({
-          name: "household_includes_elderly_or_disabled",
-          message:
-            'Select "yes" or "no" if your household includes someone who is 60 or older, or someone who is disabled',
+          message: "Step 1: Select a household size.",
         });
       }
 
@@ -245,15 +223,15 @@
         errors.push({
           name: "all_citizens_question",
           message:
-            'Select "yes" or "no" if everyone on the application is a U.S. citizen',
+            'Step 1: Select "yes" or "no" if everyone on the application is a U.S. citizen',
         });
       }
 
-      if (jsonData["disqualified_question"] === undefined) {
+      if (jsonData["household_includes_elderly_or_disabled"] === undefined) {
         errors.push({
-          name: "disqualified_question",
+          name: "household_includes_elderly_or_disabled",
           message:
-            'Select "yes" or "no" if anyone in the household is currently disqualified.',
+            'Step 1: Select "yes" or "no" if your household includes someone who is 60 or older, or someone who is disabled.',
         });
       }
 
@@ -261,15 +239,45 @@
         errors.push({
           name: "felony_question",
           message:
-            'Select "yes" or "no" if anyone in the household has been convicted of a drug-related felony since August 23, 1996.',
+            'Step 1: Select "yes" or "no" if anyone in the household has been convicted of a drug-related felony since August 23, 1996.',
         });
       }
 
-      if (jsonData["all_citizens_question"] === undefined) {
+      if (jsonData["household_includes_abawd"] === undefined) {
         errors.push({
           name: "household_includes_abawd",
           message:
-            'Select "yes" or "no" if someone in your household is between ages 18-49.',
+            'Step 1: Select "yes" or "no" if someone in your household is between ages 18-49.',
+        });
+      }
+
+      if (jsonData["disqualified_question"] === undefined) {
+        errors.push({
+          name: "disqualified_question",
+          message:
+            'Step 1: Select "yes" or "no" if anyone in the household is currently disqualified.',
+        });
+      }
+
+      if (jsonData["monthly_job_income"] === "") {
+        errors.push({
+          name: "monthly_job_income",
+          message:
+            "Step 2: Enter monthly household pre-tax income from jobs or self-employment",
+        });
+      }
+
+      if (jsonData["monthly_non_job_income"] === "") {
+        errors.push({
+          name: "monthly_non_job_income",
+          message: "Step 2: Enter monthly household income from other sources.",
+        });
+      }
+
+      if (jsonData["resources"] === "") {
+        errors.push({
+          name: "resources",
+          message: "Step 2: Enter total resources amount.",
         });
       }
 
@@ -679,6 +687,7 @@
     "household_includes_abawd",
     "felony_question",
     "disqualified_question",
+    "identify__user",
   ];
 
   for (let i = 0; i < radio_field_ids.length; i++) {

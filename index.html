@@ -86,7 +86,7 @@
             <br />
             <br />
             <button onClick="window.location.href=window.location.href">
-              Click Here to Undo All Selections
+              Click Here to Reset the Calculator
             </button>
           </p>
         </div>
@@ -125,7 +125,7 @@
                   <legend>
                     Why are you using this tool?
                     <span class="field-required"> *required </span>
-                    <div id="identify_user"></div>
+                    <div id="identify__user_error_elem"></div>
                   </legend>
 
                   <div class="usa-radio">
@@ -229,94 +229,6 @@
                   <option value="14">14 people</option>
                   <option value="15">15 people</option>
                 </select>
-
-                <!---- Disqualification Question --->
-
-                <fieldset class="usa-fieldset">
-                  <legend>
-                    Is anyone in your household currently disqualified from
-                    receiving food stamps?
-                    <span class="field-required"> *required </span>
-                    <div id="household_includes_disqualified_error_elem"></div>
-                  </legend>
-
-                  <div class="usa-radio">
-                    <input
-                      class="usa-radio__input"
-                      id="input__household_includes_disqualified_true"
-                      type="radio"
-                      name="disqualified_question"
-                      value="true"
-                    />
-                    <label
-                      id="label__disqualified_true"
-                      class="usa-radio__label"
-                      for="input__household_includes_disqualified_true"
-                    >
-                      Yes
-                    </label>
-                  </div>
-                  <div class="usa-radio">
-                    <input
-                      class="usa-radio__input"
-                      id="input__household_includes_disqualified_false"
-                      type="radio"
-                      name="disqualified_question"
-                      value="false"
-                    />
-                    <label
-                      id="label__disqualified_false"
-                      class="usa-radio__label"
-                      for="input__household_includes_disqualified_false"
-                    >
-                      No
-                    </label>
-                  </div>
-                </fieldset>
-
-                <!---- Felony Question --->
-
-                <fieldset class="usa-fieldset">
-                  <legend>
-                    Has anyone in your household been convicted of a
-                    drug-related felony since August 23, 1996?
-                    <span class="field-required"> *required </span>
-                    <div id="household_includes_felony_error_elem"></div>
-                  </legend>
-
-                  <div class="usa-radio">
-                    <input
-                      class="usa-radio__input"
-                      id="input__household_includes_felony_true"
-                      type="radio"
-                      name="felony_question"
-                      value="true"
-                    />
-                    <label
-                      id="label__felony_true"
-                      class="usa-radio__label"
-                      for="input__household_includes_felony_true"
-                    >
-                      Yes
-                    </label>
-                  </div>
-                  <div class="usa-radio">
-                    <input
-                      class="usa-radio__input"
-                      id="input__household_includes_felony_false"
-                      type="radio"
-                      name="felony_question"
-                      value="false"
-                    />
-                    <label
-                      id="label__felony_false"
-                      class="usa-radio__label"
-                      for="input__household_includes_felony_false"
-                    >
-                      No
-                    </label>
-                  </div>
-                </fieldset>
 
                 <!---- Elderly/Disabled Question --->
 
@@ -488,7 +400,96 @@
                     <!-- FOR A PROD SITE: Replace {{HOTLINE_NUMBER}} and {{HOTLINE_EMAIL}} with real contact information. -->
                   </div>
                 </div>
+
+                <!---- Disqualification Question --->
+
+                <fieldset class="usa-fieldset">
+                  <legend>
+                    Is anyone in your household currently disqualified from
+                    receiving food stamps?
+                    <span class="field-required"> *required </span>
+                    <div id="household_includes_disqualified_error_elem"></div>
+                  </legend>
+
+                  <div class="usa-radio">
+                    <input
+                      class="usa-radio__input"
+                      id="input__household_includes_disqualified_true"
+                      type="radio"
+                      name="disqualified_question"
+                      value="true"
+                    />
+                    <label
+                      id="label__disqualified_true"
+                      class="usa-radio__label"
+                      for="input__household_includes_disqualified_true"
+                    >
+                      Yes
+                    </label>
+                  </div>
+                  <div class="usa-radio">
+                    <input
+                      class="usa-radio__input"
+                      id="input__household_includes_disqualified_false"
+                      type="radio"
+                      name="disqualified_question"
+                      value="false"
+                    />
+                    <label
+                      id="label__disqualified_false"
+                      class="usa-radio__label"
+                      for="input__household_includes_disqualified_false"
+                    >
+                      No
+                    </label>
+                  </div>
+                </fieldset>
+
+                <!---- Felony Question --->
+
+                <fieldset class="usa-fieldset">
+                  <legend>
+                    Has anyone in your household been convicted of a
+                    drug-related felony since August 23, 1996?
+                    <span class="field-required"> *required </span>
+                    <div id="household_includes_felony_error_elem"></div>
+                  </legend>
+
+                  <div class="usa-radio">
+                    <input
+                      class="usa-radio__input"
+                      id="input__household_includes_felony_true"
+                      type="radio"
+                      name="felony_question"
+                      value="true"
+                    />
+                    <label
+                      id="label__felony_true"
+                      class="usa-radio__label"
+                      for="input__household_includes_felony_true"
+                    >
+                      Yes
+                    </label>
+                  </div>
+                  <div class="usa-radio">
+                    <input
+                      class="usa-radio__input"
+                      id="input__household_includes_felony_false"
+                      type="radio"
+                      name="felony_question"
+                      value="false"
+                    />
+                    <label
+                      id="label__felony_false"
+                      class="usa-radio__label"
+                      for="input__household_includes_felony_false"
+                    >
+                      No
+                    </label>
+                  </div>
+                </fieldset>
               </div>
+
               <br />
 
               <!--Earned income question-->
