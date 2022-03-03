@@ -161,10 +161,11 @@ footer#snap-calculator-footer div {
 }
 
 .allformelements {
-  position: static;
-  display: grid;
-  align-content: center;
-  place-content: center;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  flex-flow: column;
 }
 /* New Popup -   /* Height & width depends on how you want to reveal the overlay (see JS below) */
 

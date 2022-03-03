@@ -215,7 +215,7 @@
       if (jsonData["household_size"] === "") {
         errors.push({
           name: "household_size",
-          message: "Step 1: Select a household size.",
+          message: "Step 1: Enter a household size.",
         });
       }
 
@@ -283,6 +283,7 @@
 
       // Validation for number fields:
       const number_field_ids = [
+        "household_size",
         "monthly_job_income",
         "monthly_non_job_income",
         "resources",
@@ -302,7 +303,7 @@
           if (!FORM_CONTROLS["numberFieldValid"](number_elem.value)) {
             errors.push({
               name: field_id,
-              message: `Please enter a number.`,
+              message: `You have entered letters in one or more answers that required a number.`,
             });
           }
         }
@@ -666,16 +667,6 @@
         FORM_SUBMIT_FUNCS["checkForm"]();
       });
     }
-  }
-
-  const select_field_id = "household_size";
-  const select_elem = document.getElementById(select_field_id);
-
-  if (select_elem) {
-    select_elem.addEventListener("change", () => {
-      DOM_MANIPULATORS["clearClientErrorOnSelect"](select_field_id);
-      FORM_SUBMIT_FUNCS["checkForm"]();
-    });
   }
 
   // Validation for radio fields
