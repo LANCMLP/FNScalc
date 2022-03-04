@@ -453,7 +453,7 @@
       // in addition to user input data:
       const form = document.getElementById("prescreener-form");
       jsonData["state_or_territory"] = form.dataset.stateOrTerritory;
-      jsonData["use_emergency_allotment"] = form.dataset.useEmergencyAllotment;
+      jsonData["use_emergency_allotment"] = form.dataset.useEmergencyAllotment; // I can probably remove this now
       jsonData["target_year"] = "currentyr";
 
       const response = new SnapAPI.SnapEstimateEntrypoint(jsonData).calculate();
@@ -495,7 +495,7 @@
       FORM_CONTROLS["hideServerErrorMessages"]();
 
       // Scroll to bring the results into view:
-      document.getElementById("results").scrollIntoView();
+      // document.getElementById("results").scrollIntoView(); - This turns autoscroll to results on/off. I probably want this off since I made it tabbed.
     },
     responseErrorsToHTML: (errors) => {
       let html = `<h1>Errors:</h1>`;

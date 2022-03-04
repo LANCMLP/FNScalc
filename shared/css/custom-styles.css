@@ -142,7 +142,7 @@ fieldset.usa-fieldset legend {
 /* Footer styles */
 
 footer#snap-calculator-footer {
-  position: static;
+  position: relative;
   bottom: 0;
   color: white;
   background-color: #0d1d41;
@@ -162,10 +162,13 @@ footer#snap-calculator-footer div {
 
 .allformelements {
   display: flex;
+  flex: 0 0 50%;
   justify-content: space-around;
   align-items: center;
   flex-direction: column;
   flex-flow: column;
+  margin-left: 20%;
+  margin-right: 20%;
 }
 /* New Popup -   /* Height & width depends on how you want to reveal the overlay (see JS below) */
 
