@@ -161,6 +161,24 @@
       "ineligible_disqualified_question"
     ),
 
+    // form controls for results
+
+    // ABAWD Results
+
+    showABAWDResults: DOM_MANIPULATORS["showElem"]("optional-ABAWD"),
+    hideABAWDResults: DOM_MANIPULATORS["hideElem"]("optional-ABAWD"),
+
+    //Immigration Results
+
+    showImmigrationResults: DOM_MANIPULATORS["showElem"](
+      "optional-immigration"
+    ),
+    hideImmigrationResults: DOM_MANIPULATORS["hideElem"](
+      "optional-immigration"
+    ),
+
+    // End Results
+
     showABAWDInfobox: DOM_MANIPULATORS["showElem"]("abawd_info_box"),
     hideABAWDInfobox: DOM_MANIPULATORS["hideElem"]("abawd_info_box"),
     showMedicalExpensesForElderlyOrDisabled: DOM_MANIPULATORS["showElem"](
@@ -633,6 +651,20 @@
       FORM_CONTROLS["showCitizenshipInfobox"]();
     });
 
+  // Set up optional result immigration
+
+  document
+    .getElementById("input__all_citizens_question_false")
+    .addEventListener("change", () => {
+      FORM_CONTROLS["showImmigrationResults"]();
+    });
+
+  document
+    .getElementById("input__all_citizens_question_true")
+    .addEventListener("change", () => {
+      FORM_CONTROLS["hideImmigrationResults"]();
+    });
+
   // Set up toggle of lawfully present question.
 
   document
@@ -658,6 +690,20 @@
     .getElementById("input__household_includes_abawd_false")
     .addEventListener("change", () => {
       FORM_CONTROLS["hideABAWDInfobox"]();
+    });
+
+  // Set up optional result ABAWD
+
+  document
+    .getElementById("input__household_includes_abawd_true")
+    .addEventListener("change", () => {
+      FORM_CONTROLS["showABAWDResults"]();
+    });
+
+  document
+    .getElementById("input__household_includes_abawd_false")
+    .addEventListener("change", () => {
+      FORM_CONTROLS["hideABAWDResults"]();
     });
 
   // Set up toggle of disqualified question.
