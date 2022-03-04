@@ -130,6 +130,11 @@
           url: "https://ncfast.nc.gov/Curam/logon.jsp",
           description: "Apply online using NCFast.",
         },
+        {
+          url: "https://www.ncdhhs.gov/media/2368/open",
+          description:
+            "Apply in person at your county's Department of Social Services.",
+        },
       ],
       other_resources: [
         {
@@ -175,6 +180,20 @@
     ),
     hideImmigrationResults: DOM_MANIPULATORS["hideElem"](
       "optional-immigration"
+    ),
+
+    // Advocate Results
+
+    showAdvocateResults: DOM_MANIPULATORS["showElem"]("optional-advocate"),
+    hideAdvocateResults: DOM_MANIPULATORS["hideElem"]("optional-advocate"),
+
+    // Know Your Rights Results
+
+    showKnowYourRights: DOM_MANIPULATORS["showElem"](
+      "optional-know-your-rights"
+    ),
+    hideKnowYourRights: DOM_MANIPULATORS["hideElem"](
+      "optional-know-your-rights"
     ),
 
     // End Results
@@ -638,6 +657,38 @@
       FORM_SUBMIT_FUNCS["onSubmit"]();
     });
 
+  // Set up advocate results (note: three options)
+
+  document.getElementById("input__advocate").addEventListener("change", () => {
+    FORM_CONTROLS["showAdvocateResults"]();
+  });
+
+  document.getElementById("input__lanc").addEventListener("change", () => {
+    FORM_CONTROLS["showAdvocateResults"]();
+  });
+
+  document
+    .getElementById("input__general__public")
+    .addEventListener("change", () => {
+      FORM_CONTROLS["hideAdvocateResults"]();
+    });
+
+  // Set up general public results (know your rights)
+
+  document
+    .getElementById("input__general__public")
+    .addEventListener("change", () => {
+      FORM_CONTROLS["showKnowYourRights"]();
+    });
+
+  document.getElementById("input__lanc").addEventListener("change", () => {
+    FORM_CONTROLS["hideKnowYourRights"]();
+  });
+
+  document.getElementById("input__advocate").addEventListener("change", () => {
+    FORM_CONTROLS["hideKnowYourRights"]();
+  });
+
   // Set up toggle of citizenship infobox in response to citizenship question.
   document
     .getElementById("input__all_citizens_question_true")
@@ -676,7 +727,7 @@
   document
     .getElementById("input__all_citizens_question_true")
     .addEventListener("change", () => {
-      FORM_CONTROLS["hidehideIneligible_Immigration"]();
+      FORM_CONTROLS["hideIneligible_Immigration"]();
     });
 
   // Set up toggle of abawd infobox in response to abawd question.

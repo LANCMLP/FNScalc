@@ -14,6 +14,9 @@
     />
     <meta name="viewport" content="width=device-width" />
     <meta name="robots" content="noindex" />
+    <meta name="description" content="Adapted from the SNAP API and prescreen demos developed by 18F, found at https://portfolios.18f.gov/projects/eligibility-apis/reusable-snap-api/.
+    The significant additions to and reworking of this tool were designed and coded by Anthony Albanese of Legal Aid of North Carolina in 2022.">
+
     <!-- FOR A PROD SITE: Remove the 'noindex' tag so search engines can crawl the site. -->
   </head>
   <body onload="document.prescreenername.reset();">
@@ -112,7 +115,7 @@
               <!-- Step Instructions -->
 
               <!--Question - who is using this form-->
-              <div class="tab">
+              <div class="tab" id="tab1">
                 <div class="steps">
                   <b>Before We Begin:</b>
                   <div class="label-sub-text">
@@ -184,7 +187,7 @@
 
               <!--Household size question-->
 
-              <div class="tab">
+              <div class="tab" id="tab2">
                 <div class="steps">
                   <b>Step 1: Household Characteristics</b>
                   <div class="label-sub-text">
@@ -519,7 +522,7 @@
 
               <!--Earned income question-->
 
-              <div class="tab">
+              <div class="tab" id="tab3">
                 <div class="steps">
                   <b>Step 2: Household Income and Resources</b>
                   <div class="label-sub-text">
@@ -587,7 +590,7 @@
 
               <!--Dependent care question-->
 
-              <div class="tab">
+              <div class="tab" id="tab4">
                 <div class="steps">
                   <b>Step 3: Household Costs</b>
                   <div class="label-sub-text">
@@ -836,8 +839,8 @@
               id="results-section"
               class="usa-prose result-section hidden"
               role="alert"
-            >
-            <div id="results"></div>
+>
+              <div id="results"></div>
               <div class="usa-accordion">
                 <h2 class="usa-accordion__heading">
                   <button
@@ -852,6 +855,7 @@
                 <div id="a1" class="usa-accordion__content usa-prose">
                   <p id="why-did-i-get-this-result"></p>
                 </div>
+
                 <h2 class="usa-accordion__heading">
                   <button
                     id="how-are-gross-and-net-income-calculated-button"
@@ -867,6 +871,24 @@
                 </div>
 
                 <!-- Optional Results -->
+
+                <h2 class="usa-accordion__heading">
+                  <div id="optional-know-your-rights">
+                  <button
+                    id="know-your-rights-button"
+                    class="usa-accordion__button"
+                    aria-expanded="false"
+                    aria-controls="a3"
+                  >
+                    Information About Your Rights
+                  </button>
+                
+                  <div id="a3" class="usa-accordion__content usa-prose">
+                  <p id="know-your-rights"></p>
+                 </div>
+                </div>
+                </h2>
+
                 <h2 class="usa-accordion__heading">
                 <div id="optional-immigration">
                 
@@ -874,16 +896,16 @@
                     id="immigration-more-info-button"
                     class="usa-accordion__button"
                     aria-expanded="false"
-                    aria-controls="a3"
+                    aria-controls="a4"
                   >
                     More Information on Immigration and Food Stamps Eligibility
                   </button>
                 
-                <div id="a3" class="usa-accordion__content usa-prose">
+                <div id="a4" class="usa-accordion__content usa-prose">
                   <p id="immigration-more-info"></p>
                 </div>
-              </div>
-            </h2>
+                </div>
+                </h2>
 
               <h2 class="usa-accordion__heading">
                 <div id="optional-ABAWD">
@@ -891,16 +913,84 @@
                     id="ABAWD-more-info-button"
                     class="usa-accordion__button"
                     aria-expanded="false"
-                    aria-controls="a4"
+                    aria-controls="a5"
                   >
                     More Information About Work Requirements (ABAWD)
                   </button>
+                </div>
+              </h2>
                 
-                  <div id="a4" class="usa-accordion__content usa-prose">
-                  <p id="ABAWD-more-info"></p>
+                  <div id="a5" class="usa-accordion__content usa-prose">
+                    <p>
+                    Food stamps has two sets of work-related requirements: "work requirements" and "ABAWD" (Able-Bodied Adult Without Dependents) requirements. 
+                    Although these are technically two separate requirements, food stamps beneficiaries generally satisfy them both with the same activities. 
+                    Therefore this section will treat them as one and refer to them both as "work requirements."
+                    <br/>
+                    <br/>
+                    These requirements apply to members of food stamps households who meet the following conditions: 
+                    <br/>
+                    <ul>
+                    <li>Are between the ages of 18 and 49</li>
+                    <li>Are deemed "fit for employment" by DSS</li>
+                    <li>Are not living in a food stamps household with a minor that they are responsible for</li>
+                    <ul><li>Note: This does not apply if the person subject to work requirements is not responsible for the child or the child is ineligible for food stamps</li></ul>
+                    <li>Are not pregnant</li>
+                    <li>Are not covered by various exemptions</li>
+                    </ul>
+                    <br/>
+                    If work requirements apply to someone in the food stamps household, they can only be included in the household for three months of every three years unless they meet the requirements.
+                    For example, if John was age 25, could work, and did not meet the work requirements, he could be included in a food stamps household for March, April, and May of 2022. Unless he meets the work requirements, he then would have to be excluded from the household until May of 2025. During this time, John's income would still count in the benefits calculation for the household, but the household's benefit amount would be lower because John would not be included in the household size.
+                    <br/>
+                    These work requirements are met if the individual does any of the following:
+                    <br/>
+                    <ul>
+                    <li>Works at least 20 hours per week</li>
+                    <li>Works an average of 80 hours in a month</li>
+                    <li>Participates in and complies with the requirements of a work program for 20 or more hours a week</li>
+                    <li>Participates in and complies with the requirements of a workfare program (North Carolina does not operate workfare program at this time)</li>
+                    </ul>
+                    <br/>
+                    These requirements can be met by working for an employer or being self-employed. In addition, they can be satisfied by some workforce training activities.
+                    <br/>
+                    The exceptions to work requirements are:
+                    <br/>
+                    <ul>
+                    <li>Being under age 18 or over age 50</li>
+                    <li>Pregnancy</li>
+                    <ul><li>Note: Once a child is born and lives in the parent's household, work requirements no longer apply to the parent</li></ul>
+                    <li>Being medically certified as physically or mentally unfit for employment (disability or alcohol/drug dependence), or verifiably unfit based on the observation of the DSS caseworker</li>
+                    <li>Homelessness</li>
+                    <li>Being a caretaker for someone who is incapacitated</li>
+                    <li>Bring over 18 and enrolled in school at least half of the time</li>
+                    <li>Applying for and receiving Unemployment Benefits</li>
+                    <ul><li>Note: These benefits also come with job search requirements that must be completed in order to keep both unemployment and food stamps benefits</li></ul>
+                    <li>Residing in an area in which the requirements were waived (such as for COVID-19)</li>
+                    <li>Participating in a refugee resettlement program</li>
+                    <li>Receiving a waiver from DSS that allows you to receive food stamps for an extra three months after failing to meet the requirements</li>
+                    </ul>
+                    <br/>
+                    <b>As you can see, there are many situations in which individuals are exempt from work requirements. If you are denied food stamps because you have not met some work requirements and believe this is in error, you should contact Legal Aid of North Carolina using the link at the bottom of this page.</b>
+                    </p>
+                  </div>
+
+              <h2 class="usa-accordion__heading">
+                <div id="optional-advocate">
+                  <button
+                    id="advocate-more-info-button"
+                    class="usa-accordion__button"
+                    aria-expanded="false"
+                    aria-controls="a6"
+                  >
+                    Helpful Information for Advocates
+                  </button>
+                
+                  <div id="a6" class="usa-accordion__content usa-prose">
+                  <p id="advocate-more-info"></p>
                   </div>
                 </div>
               </h2>
+              </div>
+
               </div>
             </section>
           </div>
