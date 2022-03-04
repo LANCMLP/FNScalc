@@ -11,6 +11,16 @@
   margin: 8px 0;
 }
 
+/* Main */
+
+.main-container {
+  display: flex;
+  margin-left: 20%;
+  margin-right: 20%;
+  justify-content: space-around;
+  flex-flow: column;
+}
+
 .title {
   text-align: center;
   margin: 20px 0 40px 0;
@@ -102,7 +112,7 @@ fieldset.usa-fieldset legend {
 
 /* Calculator results styles */
 #results-section-title {
-  margin-top: 1.5em;
+  margin: auto; /* margin-top: 1.5em may change back */
 }
 
 .pass-green {
@@ -169,6 +179,7 @@ footer#snap-calculator-footer div {
   flex-flow: column;
   margin-left: 20%;
   margin-right: 20%;
+  flex-wrap: wrap;
 }
 /* New Popup -   /* Height & width depends on how you want to reveal the overlay (see JS below) */
 
