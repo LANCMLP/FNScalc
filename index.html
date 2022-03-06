@@ -406,6 +406,61 @@
                 </input>
               </fieldset>
 
+                <!-- WIC Question  -->
+
+                <fieldset class="usa-fieldset">
+                  <legend>
+                    Does the following apply to anyone in your household?
+                    <ul>
+                      <li>They are pregnant or have been pregnant in the last six months</li>
+                      <li>They are breastfeeding a child that is under a year old</li>
+                      <li>They are an infant younger than 5 years old</li>
+                    </ul>
+                  </legend>
+
+                  <div class="usa-radio">
+                    <input
+                      class="usa-radio__input"
+                      id="input__WIC_true"
+                      type="radio"
+                      name="WIC_question"
+                      value="true"
+                    />
+                    <label
+                      id="label__WIC_question_true"
+                      class="usa-radio__label"
+                      for="input__WIC_question_true"
+                    >
+                      Yes
+                    </label>
+                  </div>
+                  <div class="usa-radio">
+                    <input
+                      class="usa-radio__input"
+                      id="input__WIC_question_false"
+                      type="radio"
+                      name="WIC_question"
+                      value="false"
+                    />
+                    <label
+                      id="label__WIC_question_false"
+                      class="usa-radio__label"
+                      for="input__WIC_question_false"
+                    >
+                      No
+                    </label>
+                  </div>
+                </fieldset>
+
+                <div
+                id="WIC_info_box"
+                class="usa-alert usa-alert--info usa-alert--slim hidden"
+              >
+                <div class="usa-alert__body">
+                  <p class="usa-alert__text"> This household member may be eligible for additional services throught the Women, Infants, and Children (WIC) program. See the results of this calculator for more details.</p>
+                </div>
+              </div>
+
                 <!---- Disqualification Question --->
 
                 <fieldset class="usa-fieldset">
@@ -877,19 +932,36 @@
                 <!-- Optional Results -->
 
                 <h2 class="usa-accordion__heading">
+                  <div id="optional-WIC">
+                  <button
+                    id="WIC-button"
+                    class="usa-accordion__button"
+                    aria-expanded="false"
+                    aria-controls="a3"
+                  >
+                    More Information About WIC
+                  </button>
+                  </div>
+                </h2>
+
+                <div id="a3" class="usa-accordion__content usa-prose">
+                More information about WIC here.
+                </div>
+
+                <h2 class="usa-accordion__heading">
                   <div id="optional-know-your-rights">
                   <button
                     id="know-your-rights-button"
                     class="usa-accordion__button"
                     aria-expanded="false"
-                    aria-controls="a3"
+                    aria-controls="a4"
                   >
                     Information About Your Rights
                   </button>
                   </div>
                 </h2>
                 
-                  <div id="a3" class="usa-accordion__content usa-prose">
+                  <div id="a4" class="usa-accordion__content usa-prose">
                   <p>
                     <h3>Right to Apply</h3>
                   <br>
@@ -920,14 +992,14 @@
                     id="immigration-more-info-button"
                     class="usa-accordion__button"
                     aria-expanded="false"
-                    aria-controls="a4"
+                    aria-controls="a5"
                   >
                     More Information on Immigration and Food Stamps Eligibility
                   </button>
                   </div>
                 </h2>
                 
-                <div id="a4" class="usa-accordion__content usa-prose">
+                <div id="a5" class="usa-accordion__content usa-prose">
                   <p id="immigration-more-info">
                     Not everyone in the household has to be a citizen or have some type of legal immigration status in order to get food stamps, but anyone who is receiving the benefit must.
                     If there are members of the household who do not have legal immigration status, DSS will count their income, but will not count them as part of the FNS household. 
@@ -969,14 +1041,14 @@
                     id="ABAWD-more-info-button"
                     class="usa-accordion__button"
                     aria-expanded="false"
-                    aria-controls="a5"
+                    aria-controls="a6"
                   >
                     More Information About Work Requirements and ABAWD
                   </button>
                 </div>
               </h2>
                 
-                  <div id="a5" class="usa-accordion__content usa-prose">
+                  <div id="a6" class="usa-accordion__content usa-prose">
                     <p>
                     Food stamps has two sets of work-related requirements: "work requirements" and "ABAWD" (Able-Bodied Adult Without Dependents) requirements. 
                     Although these are technically two separate requirements, food stamps beneficiaries generally satisfy them both with the same activities. 
@@ -1035,13 +1107,13 @@
                     id="advocate-more-info-button"
                     class="usa-accordion__button"
                     aria-expanded="false"
-                    aria-controls="a6"
+                    aria-controls="a7"
                   >
                     Helpful Information for Legal Advocates
                   </button>
                 </div>
                 </h2>
-                  <div id="a6" class="usa-accordion__content usa-prose">
+                  <div id="a7" class="usa-accordion__content usa-prose">
                   <p id="advocate-more-info">
                   "Food stamps," or FNS (as it is called in NC), is our local variant of the federal program SNAP. 
                   Thus, there are various sources of law that are relevant when diagnosing an FNS issue, all which have varying levels of authority.

@@ -165,8 +165,15 @@
     hideNumberDisqualified: DOM_MANIPULATORS["hideElem"](
       "ineligible_disqualified_question"
     ),
+    showWICBox: DOM_MANIPULATORS["showElem"]("WIC_info_box"),
+    hideWICBox: DOM_MANIPULATORS["hideElem"]("WIC_info_box"),
 
     // form controls for results
+
+    // WIC Results
+
+    showWICResults: DOM_MANIPULATORS["showElem"]("optional-WIC"),
+    hideWICResults: DOM_MANIPULATORS["hideElem"]("optional-WIC"),
 
     // ABAWD Results
 
@@ -689,7 +696,36 @@
     FORM_CONTROLS["hideKnowYourRights"]();
   });
 
+  // Set up WIC info box
+
+  document
+    .getElementById("input__WIC_question_true")
+    .addEventListener("change", () => {
+      FORM_CONTROLS["showWICBox"]();
+    });
+
+  document
+    .getElementById("input__WIC_question_false")
+    .addEventListener("change", () => {
+      FORM_CONTROLS["hideWICBox"]();
+    });
+
+  // Set up WIC results
+
+  document
+    .getElementById("input__WIC_question_true")
+    .addEventListener("change", () => {
+      FORM_CONTROLS["showWICResults"]();
+    });
+
+  document
+    .getElementById("input__WIC_question_false")
+    .addEventListener("change", () => {
+      FORM_CONTROLS["hideWICResults"]();
+    });
+
   // Set up toggle of citizenship infobox in response to citizenship question.
+
   document
     .getElementById("input__all_citizens_question_true")
     .addEventListener("change", () => {
