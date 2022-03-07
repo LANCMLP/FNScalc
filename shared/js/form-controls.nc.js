@@ -159,12 +159,18 @@
     hideIneligible_Immigration: DOM_MANIPULATORS["hideElem"](
       "ineligible_immigration_question"
     ),
+
+    // Number disqualified
+
     showNumberDisqualified: DOM_MANIPULATORS["showElem"](
       "ineligible_disqualified_question"
     ),
     hideNumberDisqualified: DOM_MANIPULATORS["hideElem"](
       "ineligible_disqualified_question"
     ),
+
+    // WIC
+
     showWICBox: DOM_MANIPULATORS["showElem"]("WIC_info_box"),
     hideWICBox: DOM_MANIPULATORS["hideElem"]("WIC_info_box"),
 
@@ -793,7 +799,7 @@
       FORM_CONTROLS["hideABAWDResults"]();
     });
 
-  // Set up toggle of disqualified question.
+  // Set up toggle of disqualified question
 
   document
     .getElementById("input__household_includes_disqualified_true")
@@ -804,13 +810,12 @@
   document
     .getElementById("input__household_includes_disqualified_false")
     .addEventListener("change", () => {
-      if (
-        document.getElementById("input__household_includes_felony_true")
-          .value === "true"
-      ) {
-      } else {
-        FORM_CONTROLS["hideNumberDisqualified"]();
-      }
+      document.getElementById("input__household_includes_felony_false")
+        .checked &&
+      document.getElementById("input__household_includes_disqualified_false")
+        .checked
+        ? FORM_CONTROLS["hideNumberDisqualified"]()
+        : FORM_CONTROLS["showNumberDisqualified"]();
     });
 
   document
@@ -822,13 +827,12 @@
   document
     .getElementById("input__household_includes_felony_false")
     .addEventListener("change", () => {
-      if (
-        document.getElementById("input__household_includes_disqualified_true")
-          .value === "true"
-      ) {
-      } else {
-        FORM_CONTROLS["hideNumberDisqualified"]();
-      }
+      document.getElementById("input__household_includes_felony_false")
+        .checked &&
+      document.getElementById("input__household_includes_disqualified_false")
+        .checked
+        ? FORM_CONTROLS["hideNumberDisqualified"]()
+        : FORM_CONTROLS["showNumberDisqualified"]();
     });
 
   // Set up toggle of medical expenses question in response to elderly or disabled question result.
