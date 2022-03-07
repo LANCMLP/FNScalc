@@ -15,8 +15,6 @@
 
 .main-container {
   display: flex;
-  margin-left: 20%;
-  margin-right: 20%;
   justify-content: space-around;
   flex-flow: column;
 }
