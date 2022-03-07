@@ -29,6 +29,9 @@
 .subtitle {
   text-align: center;
   margin: 20px 0 40px 0;
+  margin-left: 10%;
+  margin-right: 10%;
+  font-size: larger;
 }
 
 /* Calculator-specific styles */
