@@ -804,7 +804,13 @@
   document
     .getElementById("input__household_includes_disqualified_false")
     .addEventListener("change", () => {
-      FORM_CONTROLS["hideNumberDisqualified"]();
+      if (
+        document.getElementById("input__household_includes_felony_true")
+          .value === "true"
+      ) {
+      } else {
+        FORM_CONTROLS["hideNumberDisqualified"]();
+      }
     });
 
   document
@@ -816,7 +822,13 @@
   document
     .getElementById("input__household_includes_felony_false")
     .addEventListener("change", () => {
-      FORM_CONTROLS["hideNumberDisqualified"]();
+      if (
+        document.getElementById("input__household_includes_disqualified_true")
+          .value === "true"
+      ) {
+      } else {
+        FORM_CONTROLS["hideNumberDisqualified"]();
+      }
     });
 
   // Set up toggle of medical expenses question in response to elderly or disabled question result.
