@@ -764,12 +764,14 @@
     .getElementById("input__all_citizens_question_false")
     .addEventListener("change", () => {
       FORM_CONTROLS["showIneligible_Immigration"]();
+      document.getElementById("ineligible_immigration").value = "";
     });
 
   document
     .getElementById("input__all_citizens_question_true")
     .addEventListener("change", () => {
       FORM_CONTROLS["hideIneligible_Immigration"]();
+      document.getElementById("ineligible_immigration").value = "";
     });
 
   // Set up toggle of abawd infobox in response to abawd question.
@@ -805,6 +807,7 @@
     .getElementById("input__household_includes_disqualified_true")
     .addEventListener("change", () => {
       FORM_CONTROLS["showNumberDisqualified"]();
+      document.getElementById("ineligible_disqualified").value = "";
     });
 
   document
@@ -814,7 +817,8 @@
         .checked &&
       document.getElementById("input__household_includes_disqualified_false")
         .checked
-        ? FORM_CONTROLS["hideNumberDisqualified"]()
+        ? (FORM_CONTROLS["hideNumberDisqualified"](),
+          (document.getElementById("ineligible_disqualified").value = ""))
         : FORM_CONTROLS["showNumberDisqualified"]();
     });
 
@@ -822,6 +826,7 @@
     .getElementById("input__household_includes_felony_true")
     .addEventListener("change", () => {
       FORM_CONTROLS["showNumberDisqualified"]();
+      document.getElementById("ineligible_disqualified").value = "";
     });
 
   document
@@ -831,7 +836,8 @@
         .checked &&
       document.getElementById("input__household_includes_disqualified_false")
         .checked
-        ? FORM_CONTROLS["hideNumberDisqualified"]()
+        ? (FORM_CONTROLS["hideNumberDisqualified"](),
+          (document.getElementById("ineligible_disqualified").value = ""))
         : FORM_CONTROLS["showNumberDisqualified"]();
     });
 
@@ -840,12 +846,18 @@
     .getElementById("input__household_includes_elderly_or_disabled_true")
     .addEventListener("change", () => {
       FORM_CONTROLS["showMedicalExpensesForElderlyOrDisabled"]();
+      document.getElementById(
+        "medical_expenses_for_elderly_or_disabled"
+      ).value = "";
     });
 
   document
     .getElementById("input__household_includes_elderly_or_disabled_false")
     .addEventListener("change", () => {
       FORM_CONTROLS["hideMedicalExpensesForElderlyOrDisabled"]();
+      document.getElementById(
+        "medical_expenses_for_elderly_or_disabled"
+      ).value = "";
     });
 
   // Set up validation for number fields.
