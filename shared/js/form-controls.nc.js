@@ -87,43 +87,6 @@
     // For each state, an array of Object-shaped options.
     // `apply` options include URLs and descriptions of how a household can apply.
     // `other_resources` options include URLs and descriptions of non-SNAP food resources.
-    VA: {
-      apply: [
-        {
-          url: "https://commonhelp.dss.virginia.gov/CASWeb/faces/loginCAS.xhtml",
-          description:
-            "Apply online using CommonHelp. (You may have to create an account to apply.)",
-        },
-        {
-          url: "https://www.dss.virginia.gov/localagency/index.cgi",
-          description: "Apply at a local Social Services office near you.",
-        },
-      ],
-      other_resources: [
-        {
-          url: "https://www.foodpantries.org/st/virginia",
-          description: "Foodpantries.org",
-        },
-        {
-          url: "https://www.feedingamerica.org/find-your-local-foodbank",
-          description: "Feeding America",
-        },
-      ],
-    },
-    IL: {
-      apply: [
-        {
-          url: "https://abe.illinois.gov/abe/access/",
-          description: "Apply online using ABE.",
-        },
-      ],
-      other_resources: [
-        {
-          url: "https://www.dhs.state.il.us/page.aspx?item=31245",
-          description: "Food Connections",
-        },
-      ],
-    },
     NC: {
       apply: [
         {
