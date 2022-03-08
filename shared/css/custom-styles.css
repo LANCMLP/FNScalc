@@ -15,7 +15,7 @@
 
 .main-container {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   flex-flow: column;
 }
 
@@ -47,12 +47,14 @@
 }
 
 #errors-header .error-total {
-  text-transform: uppercase;
+  text-decoration: underline;
   font-weight: bold;
+  font-size: x-large;
 }
 
 #errors-header li {
   font-style: italic;
+  font-weight: normal;
 }
 
 #household-size-label {
@@ -106,7 +108,7 @@ fieldset.usa-fieldset legend {
 
 .field-required {
   line-height: 1.625;
-  font-weight: 400;
+  font-weight: bold;
   font-style: italic;
   color: #b50909;
 }
@@ -171,17 +173,26 @@ footer#snap-calculator-footer div {
   margin: 16px 0;
 }
 
+@media only screen and (max-width: 800px) {
+  .allformelements {
+    display: flex;
+    flex: 0 0 auto;
+    justify-content: normal;
+    flex-flow: column wrap;
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+}
+
 .allformelements {
   display: flex;
-  flex: 0 0 50%;
-  justify-content: space-around;
-  align-items: center;
-  flex-direction: column;
-  flex-flow: column;
-  margin-left: 20%;
-  margin-right: 20%;
-  flex-wrap: wrap;
+  flex: 0 0 auto;
+  justify-content: normal;
+  flex-flow: column wrap;
+  margin-left: 25%;
+  margin-right: 25%;
 }
+
 /* New Popup -   /* Height & width depends on how you want to reveal the overlay (see JS below) */
 
 .overlay {
@@ -277,21 +288,45 @@ footer#snap-calculator-footer div {
 }
 
 .progress-button {
-  position: relative;
-  text-align: center;
-  padding: 2px;
+  padding: 5px;
+  background-color: #0d1d41;
+  color: white;
+  font-size: 25px;
 }
 
 .submit-button {
-  width: 100%;
+  position: relative;
+  width: auto;
   background-color: #0d1d41;
   color: white;
+  align-items: center;
+  font-size: 30px;
+  padding: 10px;
+  margin-top: 20px;
 }
 
 .steps {
   font-size: larger;
 }
 
-.translate-button {
-  position: relative;
+.all-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  flex-direction: column;
+}
+
+.step-indicator-div {
+  text-align: match-parent;
+  align-content: center;
+  justify-content: center;
+  margin: auto;
+}
+
+.reset-button {
+  padding: 5px;
+  background-color: #0d1d41;
+  color: white;
+  font-size: 25px;
 }

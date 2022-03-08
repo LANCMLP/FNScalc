@@ -54,7 +54,7 @@
           input_elem.setAttribute("aria-invalid", "false");
         } else {
           error_elem.innerHTML = DOM_MANIPULATORS["fieldErrorHTML"](
-            "Please enter a number.",
+            "<b>Please enter a number.</b>",
             "alert",
             "assertive"
           );
@@ -245,6 +245,19 @@
         });
       }
 
+      if (
+        jsonData["household_size"] -
+          (jsonData["household_size"] - jsonData["ineligible_immigration"]) -
+          jsonData["ineligible_disqualified"] <
+        1
+      ) {
+        errors.push({
+          name: "household_size_zero",
+          message:
+            "Step 1: Your current household size, adjusted for disqualifications, is zero. Please adjust your household size, number of lawfully present immigrants, or number of disqualified so that at least one household member is both 1) lawfully present in the U.S. and 2) not disqualified from food stamps for a drug felony or a program violation.",
+        });
+      }
+
       if (jsonData["all_citizens_question"] === undefined) {
         errors.push({
           name: "all_citizens_question",
@@ -412,9 +425,11 @@
 
       // ... and set overall error list afterwards, so that VoiceOver will
       // read it out immediately due to its role="alert" attribute.
-      errors_header_html += `<p class="error-total">${errors.length} ${
+      errors_header_html += `<p class="error-total"> We could not estimate your benefit amount because there ${
+        errors.length === 1 ? "was" : "were"
+      } ${errors.length} ${
         errors.length === 1 ? "error" : "errors"
-      }</p>`;
+      }.</p><p>Please review your answers and correct the following:`;
       errors_header_html += `<ul class="usa-list">`;
       for (let i = 0; i < errors.length; i++) {
         let error = errors[i];
@@ -429,7 +444,7 @@
       // in addition to user input data:
       const form = document.getElementById("prescreener-form");
       jsonData["state_or_territory"] = form.dataset.stateOrTerritory;
-      jsonData["use_emergency_allotment"] = form.dataset.useEmergencyAllotment; // I can probably remove this now
+      //  jsonData["use_emergency_allotment"] = form.dataset.useEmergencyAllotment; // I can probably remove this now
       jsonData["target_year"] = "currentyr";
 
       const response = new SnapAPI.SnapEstimateEntrypoint(jsonData).calculate();
@@ -469,9 +484,6 @@
 
       FORM_CONTROLS["showResults"]();
       FORM_CONTROLS["hideServerErrorMessages"]();
-
-      // Scroll to bring the results into view:
-      // document.getElementById("results").scrollIntoView(); - This turns autoscroll to results on/off. I probably want this off since I made it tabbed.
     },
     responseErrorsToHTML: (errors) => {
       let html = `<h1>Errors:</h1>`;
@@ -528,6 +540,9 @@
           "Other resources for food assistance:"
         );
 
+        html +=
+          "<p>Click the tabs below for more information about your results and the food stamps program.</p>";
+
         return html;
       }
 
@@ -552,6 +567,10 @@
         nextStepOptions["apply"],
         "Ways to apply:"
       );
+
+      html +=
+        "<p>Click the tabs below for more information about your results and the food stamps program.</p>";
+
       return html;
     },
     eligibilityExplanationToHTML: (eligibility_factors) => {
@@ -769,7 +788,12 @@
   document
     .getElementById("input__household_includes_disqualified_true")
     .addEventListener("change", () => {
-      FORM_CONTROLS["showNumberDisqualified"]();
+      document.getElementById("input__household_includes_felony_false")
+        .checked === false &&
+      document.getElementById("input__household_includes_felony_true")
+        .checked === false
+        ? FORM_CONTROLS["hideNumberDisqualified"]()
+        : FORM_CONTROLS["showNumberDisqualified"]();
       document.getElementById("ineligible_disqualified").value = "";
     });
 
@@ -788,7 +812,12 @@
   document
     .getElementById("input__household_includes_felony_true")
     .addEventListener("change", () => {
-      FORM_CONTROLS["showNumberDisqualified"]();
+      document.getElementById("input__household_includes_disqualified_false")
+        .checked === false &&
+      document.getElementById("input__household_includes_disqualified_true")
+        .checked === false
+        ? FORM_CONTROLS["hideNumberDisqualified"]()
+        : FORM_CONTROLS["showNumberDisqualified"]();
       document.getElementById("ineligible_disqualified").value = "";
     });
 

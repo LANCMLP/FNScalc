@@ -71,12 +71,13 @@
 
     <!-- Intro Text -->
 
-    <img
+    <div id="main" class="main-container">
+
+      <img
       src="https://www.legalaidnc.org/sites/default/files/2020-07/lanc-logo-ogp_0.png"
       class="logo"
     />
 
-    <div id="main" class="main-container">
       <div>
         <div>
           <h1 class="title">Food Stamps Eligibility Calculator</h1>
@@ -90,7 +91,7 @@
             Using this calculator can take as little as five minutes!
             <br />
             <br />
-            <button onClick="window.location.href=window.location.href">
+            <button onClick="window.location.href=window.location.href" class="reset-button">
               Click Here to Reset the Calculator
             </button>
           </p>
@@ -102,6 +103,7 @@
               class="usa-prose"
               aria-live="assertive"
               role="alert"
+              style="font-weight: 600"
             ></div>
 
             <!--Use the property below to indicate if emergency allotments are active. This is currently coded to push households to their max allotment-->
@@ -388,6 +390,7 @@
                   >
                     How many members of your household are lawfully present in the United States?
                   </label>
+                  <div id="ineligible_immigration_error_elem"></div>
                   <div class="label-sub-text">
                     This includes, but is not limited to, U.S. citizens, legal permanent residents (green cards), refugees, and asylees. <br>
                     Remember, this form does not record any personal identifying information. <br>
@@ -556,6 +559,7 @@
                 >
                   How many members of your household do the last two questions include?
                 </label>
+                <div id="ineligible_disqualified_error_elem"></div>
                 <div class="label-sub-text">
                   If someone was convicted of a drug felony <b>and</b> was also disqualified, only count them once here. Remember, this form does not record any personal identifying information.<br>
                   This answer is not required, however, your food stamps amount estimate may be incorrect if it is left blank.
@@ -846,13 +850,13 @@
               <br />
 
               <!-- Next/Previous Buttons-->
-              <div class="allformelements">
+              <div class="all-buttons">
                 <div style="margin-bottom: 20px">
                   <button
                     class="progress-button"
                     type="button"
                     id="prevBtn"
-                    onclick="nextPrev(-1)"
+                    onclick="nextPrev(-1); scrolldiv()"
                     style="float: left; margin-right: 10px; display: inline"
                   >
                     Previous
@@ -861,41 +865,44 @@
                     class="progress-button"
                     type="button"
                     id="nextBtn"
-                    onclick="nextPrev(1)"
+                    onclick="nextPrev(1); scrolldiv()"
                     style="float: right; margin-left: 10px; display: inline"
                   >
                     Next
                   </button>
                 </div>
-
-                <div
-                  style="width: 100%; text-align: center; margin-bottom: 20px"
+                <br>
+                <div class="step-indicator-div"
                 >
                   <span class="step-indicator"></span>
                   <span class="step-indicator"></span>
                   <span class="step-indicator"></span>
                   <span class="step-indicator"></span>
                 </div>
-                <div style="text-align: center">
+                <br>
+                <div>
                   <input
                     id="prescreener-form-submit"
                     class="submit-button"
                     type="submit"
                     value="Submit"
                     style="display: none"
+                    onclick="scrolldiv()"
                   />
                 </div>
               </div>
             </form>
           </div>
 
-          <div class="allformelements">
+          <div>
             <section id="server-error-messages"></section>
             <section
               id="results-section"
               class="usa-prose result-section hidden"
-              role="alert"
->
+              role="alert">
+
+            <!-- Results Tabs -->
+
               <div id="results"></div>
               <div class="usa-accordion">
                 <h2 class="usa-accordion__heading">
@@ -909,7 +916,7 @@
                   </button>
                 </h2>
                 <div id="a1" class="usa-accordion__content usa-prose">
-                  <p id="why-did-i-get-this-result"></p>
+                  <p id="why-did-i-get-this-result" style="max-width: 100%"></p>
                 </div>
 
                 <h2 class="usa-accordion__heading">
@@ -923,7 +930,7 @@
                   </button>
                 </h2>
                 <div id="a2" class="usa-accordion__content usa-prose">
-                  <p id="how-are-gross-and-net-income-calculated"></p>
+                  <p id="how-are-gross-and-net-income-calculated" style="max-width: 100%"></p>
                 </div>
 
                 <!-- Optional Results -->
@@ -961,14 +968,14 @@
                   <div id="a4" class="usa-accordion__content usa-prose">
                   <p>
                     <h3>Right to Apply</h3>
-                  <br>
+                  
                   You have the right to apply for food stamps benefits. DSS cannot discourage you from applying or refuse to let you apply. DSS also must make translated materials available so that you can apply if you don't speak English.
                   <br>
                   <h3>Right to a Representative</h3>
-                  <br>
+                  
                   You don't have to apply for food stamps yourself. You have the right to have am authorized representative apply on your behalf.
                   <h3>Right to Appeal</h3>
-                  <br>
+                  
                   If your application for food stamps is denied, you have the right to appeal. You should receive a notice from DSS explaining their decision, and it will include an appeal deadline. You have 60 days from the date on this notice to let DSS know that you are appealing.
                   <br>
                   You also have the right to appeal if your amount of benefits is reduced, your benefits are terminated, or if DSS takes some negative action against you (like seeking a fraud or overpayment claim).
@@ -977,7 +984,7 @@
                   <br>
                   If you appeal, you and your representative have the right to see DSS' records about your food stamps claim beforehand.
                   <h3>Your Right to an Attorney</h3>
-                  <br>
+                  
                   You have the right to an attorney to assist you with any food stamps appeal. If you receive a denial, termination, reduction, or other negative action from DSS, you can contact Legal Aid of North Carolina to apply for free legal assistance with your appeal.
                   </p>
                  </div>
@@ -1047,8 +1054,13 @@
                 
                   <div id="a6" class="usa-accordion__content usa-prose">
                     <p>
+                    <h3>What Are Work Requirements and ABAWD?</h3>
+                      
                     Food stamps has two sets of work-related requirements: "work requirements" and "ABAWD" (Able-Bodied Adult Without Dependents) requirements. 
                     Although these are technically two separate requirements, food stamps beneficiaries generally satisfy them both with the same activities. 
+                    
+                    <br> 
+                    <br>
                     Therefore this section will treat them as one and refer to them both as "work requirements."
                     <br/>
                     <h3>Work requirements apply to members of food stamps households who meet the following conditions:</h3>
@@ -1065,7 +1077,6 @@
                     For example, if John was age 25, could work, and did not meet the work requirements, he could be included in a food stamps household for March, April, and May of 2022. Unless he meets the work requirements, he then would have to be excluded from the household until May of 2025. During this time, John's income would still count in the benefits calculation for the household, but the household's benefit amount would be lower because John would not be included in the household size.
                     <br/>
                   <h3>These work requirements are met if the individual does any of the following:</h3>
-                    <br/>
                     <ul>
                     <li>Works at least 20 hours per week</li>
                     <li>Works an average of 80 hours in a month</li>
@@ -1076,7 +1087,6 @@
                     These requirements can be met by working for an employer or being self-employed. In addition, they can be satisfied by some workforce training activities.
                     <br/>
                     <h3>The exceptions to work requirements are:</h3>
-                    <br/>
                     <ul>
                     <li>Being under age 18 or over age 50</li>
                     <li>Pregnancy</li>
@@ -1093,6 +1103,7 @@
                     </ul>
                     <br/>
                     As you can see, there are many situations in which individuals are exempt from work requirements. 
+                    <br/>
                     <br/>
                     <b>If you are denied food stamps because you have not met some work requirements and believe this is in error, you should contact Legal Aid of North Carolina using the link at the bottom of this page.</b>
                     </p>
@@ -1179,6 +1190,13 @@
     type="text/javascript"
     src="shared/css/uswds-2.4.0/js/uswds.min.js"
   ></script>
+
+  <script>
+    function scrolldiv() {
+        var elem = document.getElementById("main");
+        elem.scrollIntoView();
+    }
+  </script>
 
   <script>
     var currentTab = 0; // Current tab is set to be the first tab (0)
