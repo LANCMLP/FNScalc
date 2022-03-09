@@ -1,3 +1,4 @@
-import WIC_results_text from "C:UsersAnthonyDocumentsGitHubFNScalcsharedjs\results-tabs.js";
+import { results_tabs_text } from "./results-tabs";
 
-document.getElementById("a3").innerHTML = WIC_results_text;
+const WIC_results_text = results_tabs_text(WIC_results_text);
+document.getElementById("WIC-results-text").innerHTML = WIC_results_text;

@@ -20,13 +20,13 @@
 
 // WIC TAB
 
-const WIC_results_text = `My new publishing system works!.`;
+function results_tabs_text() {
+  return {
+    WIC_results_text: `My new publishing system works!`,
 
-// Know Your Rights Tab
+    // Know Your Rights Tab
 
-const know_your_rights_text = `
-
-<h3>Right to Apply</h3> 
+    know_your_rights_text: `<h3>Right to Apply</h3> 
 
 You have the right to apply for food stamps benefits. DSS cannot discourage you from applying or refuse to let you apply. DSS also must make translated materials available so that you can apply if you don't speak English.
 <br>
@@ -45,13 +45,11 @@ There are multiple levels of appeal. The initial appeal involves a hearing at yo
 If you appeal, you and your representative have the right to see DSS' records about your food stamps claim beforehand.
 <h3>Your Right to an Attorney</h3>
 
-You have the right to an attorney to assist you with any food stamps appeal. If you receive a denial, termination, reduction, or other negative action from DSS, you can contact Legal Aid of North Carolina to apply for free legal assistance with your appeal.`;
+You have the right to an attorney to assist you with any food stamps appeal. If you receive a denial, termination, reduction, or other negative action from DSS, you can contact Legal Aid of North Carolina to apply for free legal assistance with your appeal.`,
 
-// Immigration Info Tab
+    // Immigration Info Tab
 
-const immigration_text = `
-
-Not everyone in the household has to be a citizen or have some type of legal immigration status in order to get food stamps, but anyone who is receiving the benefit must.
+    immigration_text: `Not everyone in the household has to be a citizen or have some type of legal immigration status in order to get food stamps, but anyone who is receiving the benefit must.
 If there are members of the household who do not have legal immigration status, DSS will count their income, but will not count them as part of the FNS household. 
 That means that they will be excluded from the calculation of the amount of benefits that the household receives.
 <br>
@@ -80,13 +78,11 @@ Notably, common exceptions include:
   <li>Human trafficking victims</li>
   <li>Legal permanent residents with military ties</li>
 </ul>
-For more information on immigration requirements to get food stamps and the documents required, see <a href="https://policies.ncdhhs.gov/divisional/social-services/food-and-nutrition-services/policy-manuals/fss227.pdf">Section 227 of the NCDHHS FNS Manual.</a>`;
+For more information on immigration requirements to get food stamps and the documents required, see <a href="https://policies.ncdhhs.gov/divisional/social-services/food-and-nutrition-services/policy-manuals/fss227.pdf">Section 227 of the NCDHHS FNS Manual.</a>`,
 
-// ABAWD and Work Requirements Info Tab
+    // ABAWD and Work Requirements Info Tab
 
-const ABAWD_text = `
-
-<h3>What Are Work Requirements and ABAWD?</h3>
+    ABAWD_text: `<h3>What Are Work Requirements and ABAWD?</h3>
                       
 Food stamps has two sets of work-related requirements: "work requirements" and "ABAWD" (Able-Bodied Adult Without Dependents) requirements. 
 Although these are technically two separate requirements, food stamps beneficiaries generally satisfy them both with the same activities. 
@@ -137,13 +133,11 @@ These requirements can be met by working for an employer or being self-employed.
 As you can see, there are many situations in which individuals are exempt from work requirements. 
 <br/>
 <br/>
-<b>If you are denied food stamps because you have not met some work requirements and believe this is in error, you should contact Legal Aid of North Carolina using the link at the bottom of this page.</b>`;
+<b>If you are denied food stamps because you have not met some work requirements and believe this is in error, you should contact Legal Aid of North Carolina using the link at the bottom of this page.</b>`,
 
-// Info for Advocates Tab
+    // Info for Advocates Tab
 
-const advocate_info_text = `
-
-"Food stamps," or FNS (as it is called in NC), is our local variant of the federal program SNAP. 
+    advocate_info_text: `"Food stamps," or FNS (as it is called in NC), is our local variant of the federal program SNAP. 
 Thus, there are various sources of law that are relevant when diagnosing an FNS issue, all which have varying levels of authority.
 This includes federal statute, regulation, and guidance, as well as state statute, regulations, and guidance (the FNS manual).
 This section will highlight notable portions of that law as to make this process easier.
@@ -174,4 +168,6 @@ NC state law that governs FNS can be found at
 USDA SNAP guidance can be found at
 
 <h3>Federal Law and Regulations on SNAP</h3>
-Federal law and regs on SNAP can be found at`;
+Federal law and regs on SNAP can be found at`,
+  };
+}

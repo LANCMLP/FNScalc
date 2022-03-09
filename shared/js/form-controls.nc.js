@@ -11,6 +11,7 @@
 //     * FORM_SUBMIT_FUNCS: Functions for handling form submission, results and error state rendering
 
 // This file is written in ES6 and compiled down to more universally browser-compatible JS with `npm run build`.
+
 (() => {
   // Shortcuts for manipulating the DOM. A micromicro framework, if you will.
   const DOM_MANIPULATORS = {
