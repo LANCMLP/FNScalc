@@ -250,14 +250,12 @@
         jsonData["household_size"] -
           (jsonData["household_size"] - jsonData["ineligible_immigration"]) -
           jsonData["ineligible_disqualified"] <
-          1 &&
-        jsonData["ineligible_disqualified"] != "" &&
-        jsonData["ineligible_immigration"] != ""
+        1
       ) {
         errors.push({
           name: "household_size_zero",
           message:
-            "Step 1: Your current household size, adjusted for disqualifications, is zero. Please adjust your household size, number of lawfully present immigrants, or number of disqualified so that at least one household member is both 1) lawfully present in the U.S. and 2) not disqualified from food stamps for a drug felony or a program violation.",
+            "Step 1: Your current household size, adjusted for disqualifications, is zero. Please adjust your household size, number of lawfully present immigrants, or number of other disqualified so that at least one household member is both 1) lawfully present in the U.S. and 2) not disqualified from food stamps for a drug felony or a program violation.",
         });
       }
 
