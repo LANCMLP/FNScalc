@@ -250,7 +250,8 @@
         jsonData["household_size"] -
           (jsonData["household_size"] - jsonData["ineligible_immigration"]) -
           jsonData["ineligible_disqualified"] <
-        1
+          1 &&
+        jsonData["ineligible_immigration"] != ""
       ) {
         errors.push({
           name: "household_size_zero",
