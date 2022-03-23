@@ -218,8 +218,7 @@ footer#snap-calculator-footer div {
   color: rgb(0, 0, 0);
   background-color: rgb(200, 200, 200);
   margin: auto;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding: 20px;
 }
 
 /* Position the close button (top right corner) */

@@ -802,10 +802,10 @@
   document
     .getElementById("input__household_includes_disqualified_false")
     .addEventListener("change", () => {
+      document.getElementById("input__household_includes_felony_true")
+        .checked === false &&
       document.getElementById("input__household_includes_felony_false")
-        .checked &&
-      document.getElementById("input__household_includes_disqualified_false")
-        .checked
+        .checked === false
         ? (FORM_CONTROLS["hideNumberDisqualified"](),
           (document.getElementById("ineligible_disqualified").value = ""))
         : FORM_CONTROLS["showNumberDisqualified"]();
@@ -826,10 +826,32 @@
   document
     .getElementById("input__household_includes_felony_false")
     .addEventListener("change", () => {
-      document.getElementById("input__household_includes_felony_false")
-        .checked &&
+      document.getElementById("input__household_includes_disqualified_true")
+        .checked === false &&
       document.getElementById("input__household_includes_disqualified_false")
-        .checked
+        .checked === false
+        ? (FORM_CONTROLS["hideNumberDisqualified"](),
+          (document.getElementById("ineligible_disqualified").value = ""))
+        : FORM_CONTROLS["showNumberDisqualified"]();
+    });
+
+  // idk this is still showing the field when no is checked the first time
+
+  document
+    .getElementById("input__household_includes_disqualified_false")
+    .addEventListener("change", () => {
+      document.getElementById("input__household_includes_felony_false")
+        .checked === true
+        ? (FORM_CONTROLS["hideNumberDisqualified"](),
+          (document.getElementById("ineligible_disqualified").value = ""))
+        : FORM_CONTROLS["showNumberDisqualified"]();
+    });
+
+  document
+    .getElementById("input__household_includes_felony_false")
+    .addEventListener("change", () => {
+      document.getElementById("input__household_includes_disqualified_false")
+        .checked === true
         ? (FORM_CONTROLS["hideNumberDisqualified"](),
           (document.getElementById("ineligible_disqualified").value = ""))
         : FORM_CONTROLS["showNumberDisqualified"]();
